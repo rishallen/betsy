@@ -3,5 +3,6 @@ class OrderItem < ActiveRecord::Base
   validates :order_id, presence: true
   validates :quantity, presence: true
 
-  belongs_to :orders
+  belongs_to :order
+  belongs_to :product
 end
