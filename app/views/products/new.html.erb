@@ -1,0 +1,23 @@
+<h1>New product</h1>
+
+<%= form_for [@user, @product] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+
+  <%= f.label :stock %>
+  <%= f.text_field :stock %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+
+
+  <%#= f.collection_select  @category, :id, :name, {multiple: true} %>
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %>
+
+  <%= f.submit %>
+  <% end %>
