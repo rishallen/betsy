@@ -46,8 +46,9 @@ class OrdersController < ApplicationController
 
   def add_to_cart
     #add one item by :product_id param to the current_order
-    @current_order.order_items.create(product_id: params[:product_id])
-    #binding.pry
+    # current_order.save
+    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    #  binding.pry
     redirect_to cart_path
   end
 
