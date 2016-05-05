@@ -52,8 +52,8 @@ end
 
 orders = [
   {
-    user_id: 1
-    status: pending,
+    user_id: 1,
+    status: "pending"
   }
 ]
 
