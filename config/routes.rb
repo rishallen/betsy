@@ -7,13 +7,15 @@ Rails.application.routes.draw do
     resources :orders
     resources :reviews, except: [:show]
     resources :products
-    get '/cart' => 'user#cart'
   end
+
+  get '/cart' => 'user#cart'
 
   resources :products do
     resources :reviews
-    get '/:by_category' => 'products#by_category'
   end
+
+  get 'products/by_category/:category' => 'products#by_category'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

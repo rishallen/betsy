@@ -1,0 +1,17 @@
+<h1>Product Detail:</h1>
+
+<h2>Name:</h2>
+   <%= @product.name %>
+<h2>Price:</h2>
+  <%= @product.price %>
+<h2>Seller ID:</h2>
+  <%= @product.user_id %>
+<h2>In Stock:</h2>
+   <%= @product.stock %>
+<h2>Description:</h2>
+   <%= @product.description %>
+<h2>Category:</h2>
+  <%= @product.category %>
+  <%= image_tag(@product.photo_url) %>
+ <h2><%= @product.reviews.count %> <h5>Reviews</h5>
+ <h2>rating?</h2>
