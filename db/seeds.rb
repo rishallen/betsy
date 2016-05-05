@@ -14,7 +14,7 @@ products = [
   {
     name: "Mustachifier",
     price: 9.99,
-    user_id: user.id,
+    user_id: 1,
     stock: 20,
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
@@ -44,7 +44,7 @@ products = [
 
 products.each do |product|
     hipster_prod = Product.create(product)
-    review = Review.create(rating: 3, user: user, product_id: hipster_prod.id, content: "jnjnjnj")
+    review = Review.create(rating: 3, user_id: 2, product_id: hipster_prod.id, content: "jnjnjnj")
 end
 
 
@@ -64,7 +64,7 @@ end
 
 order_items = [
 {
-  product_id: 1,
+  product_id: 3,
   order_id: 1,
   quantity: 2
 },
@@ -77,5 +77,30 @@ order_items = [
 
 
 order_items.each do |order_item|
-    Order_items.create(order_item)
+    OrderItem.create(order_item)
+end
+
+
+users = [
+  {
+    username: "SmallBatchMoustache",
+    email: "smallbatchstache@hipsterly.com",
+    password: "xyz"
+  },
+
+  {
+    username: "BeardFabulous",
+    email: "beardfabulous@hipsterly.com",
+    password: "xyz"
+  },
+
+  {
+    username: "SingleOriginBeard",
+    email: "SingleOriginBeard@hipsterly.com",
+    password: "xyz"
+  }
+]
+
+users.each do |user|
+    User.create(user)
 end

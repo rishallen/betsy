@@ -47,6 +47,6 @@ class OrdersController < ApplicationController
 
   private
   def create_order_params
-    params.permit(order: [:session_id, :user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
+    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
   end
 end
