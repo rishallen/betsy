@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :reviews, except: [:show]
     resources :products
   end
-
+  resources :sessions, :only => [:new, :create]
+  delete "/logout" => "sessions#destroy"
   get '/cart' => 'user#cart'
 
   resources :products do
