@@ -78,5 +78,5 @@ order_items = [
 
 
 order_items.each do |order_item|
-    Order_items.create(order_item)
+    OrderItem.create(order_item)
 end
