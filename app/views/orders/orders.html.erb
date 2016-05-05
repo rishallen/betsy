@@ -1,0 +1,6 @@
+<h2>Your orders:</h2>
+
+<%@mechant_orders.each do |order| %>
+  <%= link_to order.id, order_path%>: <%= User.find_by(id: order.user_id).username%>
+  <%= order.created_at %> <%= order.status%>
+<%end%>

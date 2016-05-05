@@ -1,1 +1,10 @@
 <h2>Shopping Cart:</h2>
+
+<%@order_items.each do |item|%>
+  <%=Product.find_by(id: item.product_id).name%>
+  <%= form_tag cart_path, method: post do%>
+  <%= label_tag :quantity, "Quantity:" %>
+  <%= text_field_tag :quantity %>
+  <%= submit_tag "Update"%>
+  <%end%>
+<%end%>

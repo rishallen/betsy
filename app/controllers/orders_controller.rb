@@ -2,11 +2,13 @@ class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
     @mechant_orders = Order.find_by(user_id: session[:user_id])
+    # @order_items = @merchant_orders.order_items
     render :index
   end
 
   def show
     @order = Order.find(:id) #requires order id be passed in!
+    @order_items = @order.order_items
     render :show
   end
  #NEW MAY NOT BE NEEDED - CREATE/POST ONLY
