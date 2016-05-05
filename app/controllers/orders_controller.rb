@@ -57,6 +57,17 @@ class OrdersController < ApplicationController
 
   end
 
+  def order_placed #call when "confirm order/pay" button is used, params should include status update
+    @order_placed = current_order
+    @order_placed.update(create_order_params[:order])
+    if sessions[:user_id]
+      @order = Order.create(status: "pending", user_id: sessions[:user_id])
+    else
+      @order = Order.create(status: "pending")
+    end
+    render :order_review
+  end
+
   private
   def create_order_params
     params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
