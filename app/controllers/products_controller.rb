@@ -27,8 +27,8 @@ class ProductsController < ApplicationController
   end
 
   def by_seller
-    @user = User.find_by(id: params[:user_id)
-    @products = @user.products.where(out_of_stock: false)
+    @user = User.find_by(id: params[:user_id])
+    @products = @user.products
   end
 
   def create

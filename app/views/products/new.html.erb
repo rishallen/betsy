@@ -15,7 +15,7 @@
 
   <%= f.label :category %>
   <%= f.text_area :category%>
-  <%#= f.collection_select  @category, :id, :name, {multiple: true} %>
+  <%#= f.collection_select :category, @product, :id, :name, { }, { multiple: true } %>
 
   <%= f.label :photo_url %>
   <%= f.text_field :photo_url %>
