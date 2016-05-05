@@ -8,9 +8,13 @@ Rails.application.routes.draw do
     resources :reviews, except: [:show]
     resources :products
   end
+
+
+  get '/cart' => 'orders#cart'
+
   resources :sessions, :only => [:new, :create]
   delete "/logout" => "sessions#destroy"
-  get '/cart' => 'user#cart'
+
 
   resources :products do
     resources :reviews
@@ -68,4 +72,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  post '/add_to_cart/:product_id' => 'orders#add_to_cart', :as => 'add_to_cart'
 end

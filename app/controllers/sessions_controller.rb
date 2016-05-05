@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.log_in(params[:email], params[:password])
+
     if user
       session[:user_id] = user.id
       redirect_to root_path
