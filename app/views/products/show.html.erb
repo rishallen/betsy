@@ -18,5 +18,6 @@
    <% @product.reviews.each do |review| %>
       <li><%= review.rating %></li>
       <li><%= review.content %></li>
-        <% end %>
- 
+    <% end %>
+
+<%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>

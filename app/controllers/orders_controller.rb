@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
     render :products #Assuming we've created new order for guest/created new account and are now logged in
   end
 
+
   def create
     @order = Order.new(create_order_params[:order])
     if @order.save
@@ -39,6 +40,17 @@ class OrdersController < ApplicationController
     render user_cart_path
   end
 
+  def cart
+    @order_items = current_order.order_items
+  end
+
+  def add_to_cart
+    #add one item by :product_id param to the current_order
+    # current_order.save
+    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    #  binding.pry
+    redirect_to cart_path
+  end
 
   def destroy # A "clear cart" function?
     @order = current_order.order_items.destroy #may not be right
