@@ -4,5 +4,11 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :orders
   has_many :products
-  #has_secure_password
+
+  has_secure_password
+
+  def self.log_in(email, password)
+    somebody = find_by(email: email)
+    somebody && somebody.authenticate(password)
+  end
 end

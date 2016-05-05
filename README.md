@@ -28,7 +28,7 @@
 1. Have one person on your team fork/clone the project master as per usual
   1. Add all other team members as collaborators
   1. Each team member should clone the repo to their computer
-1. Figure out your workflow for the project, re: Git and Task management 
+1. Figure out your workflow for the project, re: Git and Task management
   1. Determine who will be the Stand Up Leader and Task Leader for the first week
 1. Create a Trello board and ensure that all team members and instructors have access
 1. Review the User Storie below and create Trello tasks to represent them
@@ -49,17 +49,18 @@ Build an online system for listing, selling, reviewing, and buying a wide variet
 #### Guest User (Unauthenticated)
 As a guest to the website (not signed in) I **can**:
 
-- Browse all products
-- Browse products by category
-- Browse products by merchant (users)
-- View any individual product with additional details
-- Leave a review for a product providing:
+- Browse all products <!-- product#index -->
+- Browse products by category <!-- product#index -->
+- Browse products by merchant (users) <!-- product#index -->
+- View any individual product with additional details <!-- product#show -->
+- Leave a review for a product providing: <!-- product/:id/review/create *no review nested under user -->
     - A Text review
     - A rating out of 5
-- Add in-stock products to my cart
-- Remove products from my cart
-- Change the quantity of an existing product in my cart
-- Purchase the items in my cart, providing:
+- Add in-stock products to my cart <!-- order#add ??? -->
+- Remove products from my cart <!-- order#remove ??? -->
+- Change the quantity of an existing product in my cart <!-- order#update ??? -->
+- Purchase the items in my cart, providing: <!-- order#checkout *custom route need a get and a post -->  
+  <!-- get '/order/:id/cart/' => 'order#show' -->
     - Email Address
     - Mailing Address
     - Name on credit card
@@ -67,30 +68,46 @@ As a guest to the website (not signed in) I **can**:
     - Credit cart expiration
     - Credit Card CVV (security code)
     - Billing zip code
+  <!-- post '/order/:id/checkout/' => 'order#create' -->
 - Purchasing an order makes the following changes:
     - Reduces the number of inventory for each product
     - Changes the order state from "pending" to "paid"
     - Clears the current cart
 - After purchasing an order, I can view a confirmation screen including:
+<!-- have a cart and a controller for the cart, it would just be a show
+this one will be an order#show (which is info down below). cart#add cart
+session is like a database, but it's not stored.  It will be stored in
+the guests session, not a database.  Maybe use the session controller for
+the cart?  Look up session for a cart.  The user holds on to their cart
+in the session -->
     - Each item in the order with a quantity and line-item subtotal
     - A link to the item description page
     - Order total price
     - DateTime the order was placed
     - The current status of the order
-- Sign up to be a merchant, providing:
+- Sign up to be a merchant, providing: <!-- user#create, have a checkbox for
+asking if they are a merchant, which then raises a flag and updates type -->
     - Email Address
     - Username
     - Password (plain text passwords cannot be stored in the database)
     - Password confirmation
 - Sign in to my merchant account
+<!-- User has a merchant_id? -->
 
 As a guest I **cannot**:
 
 - Add products to the cart that are out of stock
-- View any link or page to manage any products
+- View any link or page to manage any products <!--  -->
 - View any of the account pages
 
+<!-- if session user_id exists, then they can do things, if not,
+then the person can only do certain things.  All the things they can do are the above
+if they try to do other things, redirect to log in? -->
+
 #### Authenticated Users
+<!-- Most of this bottom will used ternaries in different ways.  If @user logout
+else, log in.  We will be checking @user a lot to see if they are signed in
+with a user_id, or if it's just a session -->
 As a signed-in user, I **can**:
 
 - Do everything a guest user can do except for sign up and sign in
