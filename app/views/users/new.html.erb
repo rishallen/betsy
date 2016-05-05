@@ -1,1 +1,26 @@
-<h1>Sign Up!</h1>
+<h1>New User ZOMG!</h1>
+<% if @user.errors.any? %>
+  <div class="errors"
+  <h2>Bwoken. :( </h2>
+  <ul>
+    <% @user.errors.each do |attribute, message| %>
+      <li>
+        <strong><%= attribute %></strong>: <%= message %>
+      </li>
+    <%= end %>
+  </ul>
+<%= end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.label :password_confirmation %>
+
+  <%= f.password_field %>
+  <%= f.submit %>
+<%= end %>

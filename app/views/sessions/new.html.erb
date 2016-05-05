@@ -1,0 +1,11 @@
+<h1>Sign In Please!</h1>
+<% form_tag sessions_path, method: post do %>
+  <%= label_tag :email, "Email Address:"  %>
+  <%= text_field_tag :email %>
+
+  <%= label_tag :password, "Password (secret):" %>
+  <%= password_field_tag :password %>
+
+  <%= submit_tag "Sign In, I guess" %>
+
+<% end  %>
