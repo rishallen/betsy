@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  get '/cart' => 'user#cart'
+  get '/cart' => 'orders#cart'
 
   resources :products do
     resources :reviews
@@ -67,4 +67,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  post '/add_to_cart/:product_id' => 'orders#add_to_cart', :as => 'add_to_cart'
 end
