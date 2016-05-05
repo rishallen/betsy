@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     resources :products
   end
 
+
   get '/cart' => 'orders#cart'
+
+  resources :sessions, :only => [:new, :create]
+  delete "/logout" => "sessions#destroy"
+
 
   resources :products do
     resources :reviews
