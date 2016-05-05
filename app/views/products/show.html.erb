@@ -13,5 +13,10 @@
 <h2>Category:</h2>
   <%= @product.category %>
   <%= image_tag(@product.photo_url) %>
- <h2><%= @product.reviews.count %> <h5>Reviews</h5>
- <h2>rating?</h2>
+<h2>Reviews</h2>
+ <h2><%= @product.reviews.count %>
+   <% @product.reviews.each do |review| %>
+      <li><%= review.rating %></li>
+      <li><%= review.content %></li>
+        <% end %>
+ 
