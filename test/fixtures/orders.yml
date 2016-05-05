@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  item_id: 1
-  user_id: 1
-  status: MyString
-  mailing_address: MyString
-  cc_digits: 1
-  expiration: 2016-05-02
-
-two:
-  item_id: 1
-  user_id: 1
-  status: MyString
-  mailing_address: MyString
-  cc_digits: 1
-  expiration: 2016-05-02
+# 
+# one:
+#   item_id: 1
+#   user_id: 1
+#   status: MyString
+#   mailing_address: MyString
+#   cc_digits: 1
+#   expiration: 2016-05-02
+#
+# two:
+#   item_id: 1
+#   user_id: 1
+#   status: MyString
+#   mailing_address: MyString
+#   cc_digits: 1
+#   expiration: 2016-05-02
