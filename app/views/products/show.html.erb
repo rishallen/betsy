@@ -13,10 +13,11 @@
 <h2>Category:</h2>
   <%= @product.category %>
   <%= image_tag(@product.photo_url) %>
+
+<%= link_to "Leave a review for this product", new_product_review_path(@product.id)%>
 <h2>Reviews</h2>
  <h2><%= @product.reviews.count %>
    <% @product.reviews.each do |review| %>
       <li><%= review.rating %></li>
       <li><%= review.content %></li>
         <% end %>
- 
