@@ -9,7 +9,6 @@ Product.destroy_all
 User.destroy_all
 Review.destroy_all
 
-user = User.create(username: "Suze", email: "jnjsdnfa@knkdsfn.com", password: "hotmail")
 
 products = [
   {
