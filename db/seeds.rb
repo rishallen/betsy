@@ -47,3 +47,36 @@ products.each do |product|
     hipster_prod = Product.create(product)
     review = Review.create(rating: 3, user: user, product_id: hipster_prod.id, content: "jnjnjnj")
 end
+
+
+
+orders = [
+  {
+    user_id: 1
+    status: pending,
+  }
+]
+
+
+orders.each do |order|
+    Order.create(order)
+end
+
+
+order_items = [
+{
+  product_id: 1,
+  order_id: 1,
+  quantity: 2
+},
+{
+  product_id: 2,
+  order_id: 1,
+  quantity: 3
+}
+]
+
+
+order_items.each do |order_item|
+    Order_items.create(order_item)
+end
