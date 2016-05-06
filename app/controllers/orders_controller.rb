@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
       if current_stock-item.quantity >= 0
         Product.find_by(id: product_id).update(stock: (current_stock-item.quantity))
       else
-        item.quantity.update(quantity: current_stock)
+        item.update(quantity: current_stock)
         Product.find_by(id: product_id).update(stock: 0)
       end
     end
