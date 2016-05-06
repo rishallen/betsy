@@ -11,5 +11,6 @@
     <%= select_tag(:quantity, options_for_select(array, item.quantity)) %>
     <%= hidden_field_tag :id, item.id %>
     <%= submit_tag "Update"%>
+    <%= link_to "Delete", delete_order_item_path(item.id), method: :delete %>
   <%end%>
 <%end%>

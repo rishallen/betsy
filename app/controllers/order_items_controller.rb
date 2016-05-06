@@ -13,6 +13,12 @@ class OrderItemsController < ApplicationController
     # binding.pry
   end
 
+  def destroy
+    @order_item = current_order.order_items.find(params[:id])
+    @order_item.destroy
+    redirect_to cart_path
+  end
+
 
   # private
   #
