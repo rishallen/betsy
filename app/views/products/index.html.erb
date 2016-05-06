@@ -7,3 +7,9 @@
     <%end%>
   </ul>
 </section>
+
+<section>
+  <% if current_user %>
+  <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
+  <% end %>
+</section>

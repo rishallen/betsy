@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @user = User.find_by(id: params[:user_id])
     # @category = Product.find(1).category
   end
 
@@ -32,9 +33,10 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params[:product])
+    @user = User.find_by(id: params[:user_id])
+    @product = @user.products.new(product_params[:product])
     if(@product.save)
-      redirect_to product_path(params[:id])#redirect in case user tries to post another form - brings them to entered view
+      redirect_to user_products_path(@product.user_id)#redirect in case user tries to post another form - brings them to entered view
     else
       render :new
     end
@@ -48,7 +50,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update(product_params)
     if @product.save
-      redirect_to user_path(current_user)
+      redirect_to user_products_path(current_user)
     else
       render 'edit'
     end
@@ -59,7 +61,7 @@ class ProductsController < ApplicationController
       return true
     end
     @product.save
-    redirect_to user_path(@product.user_id)
+    redirect_to user_products_path(@product.user_id)
   end
 
   private
