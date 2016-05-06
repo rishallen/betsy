@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     resources :products
   end
 
-
   get '/cart' => 'orders#cart'
 
   resources :sessions, :only => [:new, :create]
@@ -73,4 +72,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   post '/add_to_cart/:product_id' => 'orders#add_to_cart', :as => 'add_to_cart'
+  post '/cart' => 'order_items#update'
 end

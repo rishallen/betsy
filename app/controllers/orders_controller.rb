@@ -28,17 +28,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit #Editing orders should only be "PENDING" orders, should be in cart
-    @order = current_order
-    @order_items = @order.order_items
-      render user_cart_path
-  end
-
-  def update
-    @order = current_order
-    @order_items = @order.order_items.update(params[:order_items]) #fix this, I don't know what I'm doing
-    render user_cart_path
-  end
+  # def edit #Editing orders should only be "PENDING" orders, should be in cart
+  #   @order = current_order
+  #   @order_items = @order.order_items
+  #     render user_cart_path
+  # end
+  #
+  # def update
+  #   @order = current_order
+  #   @order_items = @order.order_items.update(params[:order_items]) #fix this, I don't know what I'm doing
+  #   render user_cart_path
+  # end
 
   def cart
     @order_items = current_order.order_items
