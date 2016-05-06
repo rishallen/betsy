@@ -44,8 +44,13 @@ class OrdersController < ApplicationController
     @order_items = current_order.order_items
   end
 
+  def checkout
+    @order = current_order
+    render :checkout
+  end
+
   def add_to_cart
-    ## REDUNDANT ??? 
+    ## REDUNDANT ???
     #if product_id already in current_order, just add + 1, else
     #add one item by :product_id param to the current_order
     if !current_order.order_items.where(product_id: params[:product_id]).empty?
@@ -77,8 +82,8 @@ class OrdersController < ApplicationController
     end
     @order_placed = current_order
     @order_placed.update(create_order_params[:order])
-    if sessions[:user_id]
-      @order = Order.create(status: "pending", user_id: sessions[:user_id])
+    if session[:user_id]
+      @order = Order.create(status: "pending", user_id: session[:user_id])
     else
       @order = Order.create(status: "pending")
     end

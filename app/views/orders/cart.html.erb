@@ -1,9 +1,11 @@
 <h2>Shopping Cart:</h2>
 
-
+<% @sum = 0 %>
 <%@order_items.each do |item|%>
   <%product = Product.find_by(id: item.product_id)%>
-  <%= product.name %>
+  <%= product.name %> : $<%= product.price%>
+
+  <%@sum += product.price%>
 
   <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
     <%= label_tag :quantity, "Quantity:" %>
@@ -14,3 +16,6 @@
     <%= link_to "Delete", delete_order_item_path(item.id), method: :delete %>
   <%end%>
 <%end%>
+Order total: $<%= @sum%>
+
+<%= link_to "Checkout", cart_checkout_path(current_order.id) %>
