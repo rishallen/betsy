@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy"
 
 
-  resources :products, except: [:new] do
+  resources :products, except: [:new, :create] do
     resources :reviews
   end
 
