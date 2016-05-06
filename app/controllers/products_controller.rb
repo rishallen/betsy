@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params[:product])
     if(@product.save)
-        redirect_to product_path(params[:id])#redirect in case user tries to post another form - brings them to entered view
+      redirect_to product_path(params[:id])#redirect in case user tries to post another form - brings them to entered view
     else
       render :new
     end
@@ -55,7 +55,9 @@ class ProductsController < ApplicationController
   end
 
   def out_of_stock
-    @product.out_of_stock ? @product.out_of_stock = false : @product.out_of_stock = true
+    if @product.stock == 0
+      return true
+    end
     @product.save
     redirect_to user_path(@product.user_id)
   end

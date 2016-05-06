@@ -1,0 +1,12 @@
+<h2>Thank you for shopping with Hipsterly!</h2>
+<% @sum = 0%>
+<h3>Order successfully placed  <%=@order_placed.updated_at%>. </h3>
+<h4>Order #<%=@order_placed.id%>, <%=@order_placed.status%>:</h4>
+<%=@order_placed.order_items.each do |item|%>
+  <%= link_to "#{Product.find_by(item.product_id).name}", product_path(item.product_id) %> : <%=item.quantity%>
+  Unit price: <%=(Product.find_by(item.product_id).price%>
+  Item price subtotal:<%=@item_price = (Product.find_by(item.product_id).price) * item.quantity%>
+  <%@sum += @item_price%>
+<%end%>
+Order total:
+$<%= @sum %>

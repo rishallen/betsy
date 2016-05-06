@@ -57,6 +57,28 @@ class OrdersController < ApplicationController
 
   end
 
+  def order_placed #call when "confirm order/pay" button is used, params should include status update
+    @items = current_order.order_items
+    @items.each do |item|
+      product_id = item.product_id
+      current_stock = Product.find_by(id: product_id).stock
+      if current_stock-item.quantity >= 0
+        Product.find_by(id: product_id).update(stock: (current_stock-item.quantity))
+      else
+        item.quantity.update(quantity: current_stock)
+        Product.find_by(id: product_id).update(stock: 0)
+      end
+    end
+    @order_placed = current_order
+    @order_placed.update(create_order_params[:order])
+    if sessions[:user_id]
+      @order = Order.create(status: "pending", user_id: sessions[:user_id])
+    else
+      @order = Order.create(status: "pending")
+    end
+    render :order_review
+  end
+
   private
   def create_order_params
     params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes

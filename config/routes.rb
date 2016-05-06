@@ -10,16 +10,24 @@ Rails.application.routes.draw do
   end
 
   get '/cart' => 'orders#cart'
+  post '/cart' => 'order_item#update'
+
+  get '/cart/checkout' => 'orders#checkout'
+  patch '/cart/checkout' => 'orders#order_placed' #does patch need to point to checkout page? Or to the destination?
+  get '/cart/checkout/review_order/:id' => 'order#review'
 
   resources :sessions, :only => [:new, :create]
   delete "/logout" => "sessions#destroy"
 
 
-  resources :products do
+  resources :products, except: [:new, :create] do
     resources :reviews
+    collection do
+      get 'by_category/:category' => 'products#index'
+      get 'by_seller/:user_id' => 'products#index'
+    end
   end
 
-  get 'products/by_category/:category' => 'products#by_category'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

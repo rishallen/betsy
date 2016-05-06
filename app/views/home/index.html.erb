@@ -2,6 +2,6 @@
 
 <%= link_to "Login", new_session_path %>
 
-<%= link_to "Sign Up", new_user_path %>
+<%= link_to "Sign Up", new_user_path unless current_user %>
 
 <%= link_to "Browse Products", products_path %>
