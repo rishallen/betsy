@@ -62,7 +62,12 @@ class OrdersController < ApplicationController
     @items.each do |item|
       product_id = item.product_id
       current_stock = Product.find_by(id: product_id).stock
-      Product.find_by(id: product_id).update(stock: (current_stock-item.quantity))
+      if current_stock-item.quantity >= 0
+        Product.find_by(id: product_id).update(stock: (current_stock-item.quantity))
+      else
+        item.quantity.update(quantity: current_stock)
+        Product.find_by(id: product_id).update(stock: 0)
+      end
     end
     @order_placed = current_order
     @order_placed.update(create_order_params[:order])
