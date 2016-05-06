@@ -45,9 +45,15 @@ class OrdersController < ApplicationController
   end
 
   def add_to_cart
+    ## REDUNDANT ??? 
+    #if product_id already in current_order, just add + 1, else
     #add one item by :product_id param to the current_order
-    # current_order.save
-    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    if !current_order.order_items.where(product_id: params[:product_id]).empty?
+      item = current_order.order_items.find_by(product_id: params[:product_id])
+      item.quantity = item.quantity + 1
+    else
+      current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    end
     #  binding.pry
     redirect_to cart_path
   end
