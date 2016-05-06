@@ -11,12 +11,17 @@ Rails.application.routes.draw do
 
 
   get '/cart' => 'orders#cart'
+  post '/cart' => 'order_item#update'
+
+  get '/cart/checkout' => 'orders#checkout'
+  patch '/cart/checkout' => 'orders#order_placed' #does patch need to point to checkout page? Or to the destination?
+  get '/cart/checkout/review_order/:id' => 'order#review'
 
   resources :sessions, :only => [:new, :create]
   delete "/logout" => "sessions#destroy"
 
 
-  resources :products do
+  resources :products, except: [:new] do
     resources :reviews
   end
 
