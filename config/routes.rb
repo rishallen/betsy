@@ -18,9 +18,12 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :reviews
+    collection do
+      get 'by_category/:category' => 'products#index'
+      get 'by_seller/:user_id' => 'products#index'
+    end
   end
 
-  get 'products/by_category/:category' => 'products#by_category'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
