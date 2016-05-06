@@ -6,6 +6,8 @@ class OrderTest < ActiveSupport::TestCase
   # end
   test "test db contains seeded order"
     things = Order.find(1).order_items
-    assert_equal things.orders, 1
-    
+    things.each do |item|
+      assert_equal item.order, 1
+    end
+
 end
