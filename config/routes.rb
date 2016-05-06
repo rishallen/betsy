@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy"
 
 
-  resources :products, except: [:new, :create] do
+  resources :products, except: [:new, :create, :update, :edit] do
     resources :reviews
     collection do
       get 'by_category/:category' => 'products#index'

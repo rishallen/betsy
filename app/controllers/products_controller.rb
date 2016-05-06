@@ -23,8 +23,8 @@ class ProductsController < ApplicationController
   end
 
   def by_category
-    @category = Category.find_by(id: params[:category])
-    @products = @category.products
+    @products = Product.order(category: :asc)
+    # @all_categories = product[:category]
   end
 
   def by_seller

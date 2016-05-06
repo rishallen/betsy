@@ -6,6 +6,7 @@
 
 <%= link_to "Browse Products", products_path %>
 
-<%#= link_to "Browse Products by Category", user_products_path(@user.id) %>
+<%= link_to "Browse Products by Category", '/products/by_category' %>
+<%#= collection_select "category", options_from_collection_for_select( @all_categories , "id", "name" ), :include_blank => true, :multiple => true %>
 
-<%#= link_to "Browse Products by Seller", products_path(@products.user_id) %>
+<%= link_to "Browse Products by Seller", '/products/by_seller/:user_id' %>
