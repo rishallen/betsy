@@ -1,12 +1,14 @@
 class ProductsController < ApplicationController
 
   def index
+  @sellers = show_sellers
+  @categories =  show_category
     if params[:category]
       by_category
     elsif params[:user_id]
       by_seller
     else
-      @products = Product.all #order(category: :asc)
+      @products = Product.order('LOWER (category)')
     end
     render :index
   end
@@ -23,8 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def by_category
-    @products = Product.order(category: :asc)
-    # @all_categories = product[:category]
+    @products = Product.where(category: params[:category])
   end
 
   def by_seller
@@ -56,7 +57,15 @@ class ProductsController < ApplicationController
     end
   end
 
-  def out_of_stock
+  def show_category
+    @categories = Product.select('DISTINCT category').map(&:category)
+  end
+
+  def show_sellers
+    @sellers = User.all.select { |user| user.products.count > 0 }
+  end
+
+  def retire
     if @product.stock == 0
       return true
     end

@@ -9,6 +9,15 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  resources :products, except: [:new, :create, :update, :edit] do
+    resources :reviews
+    collection do
+      get 'by_category/:category' => 'products#index'
+      get 'by_category/' => 'products#index'
+      get 'by_seller/:user_id' => 'products#index'
+      get 'by_sellers/' => 'products#index'
+    end
+  end
 
   get '/cart' => 'orders#cart'
   post '/cart' => 'order_item#update'
@@ -21,13 +30,6 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy"
 
 
-  resources :products, except: [:new, :create, :update, :edit] do
-    resources :reviews
-    collection do
-      get 'by_category/:category' => 'products#index'
-      get 'by_seller/:user_id' => 'products#index'
-    end
-  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

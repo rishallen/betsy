@@ -3,10 +3,9 @@
 <h1>Products Index</h1>
 
 <section>
-  <h2><%#= @category.name %></h2>
   <ul>
     <% @products.each do |product| %>
-      <li><%= link_to product.name, product_path(product.id) %></li>
+      <li><%= link_to product.name, product_path(product.id)%></li>
     <%end%>
   </ul>
 </section>
@@ -14,5 +13,19 @@
 <section>
   <% if current_user %>
   <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
+  <% end %>
+</section>
+
+<h1>Products by category</h1>
+<section>
+  <% @categories.sort.each do |category| %>
+    <li><%= link_to category.upcase %></li>
+  <% end %>
+</section>
+
+<h1>Products by sellers</h1>
+<section>
+  <% @sellers.each do |seller| %>
+    <li><%= link_to seller.username, user_products_path(seller.id) %></li>
   <% end %>
 </section>

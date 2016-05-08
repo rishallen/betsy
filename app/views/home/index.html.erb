@@ -1,6 +1,6 @@
 <h1> Home page </h1>
 
-<%= link_to "Login", new_session_path %>
+<%= link_to "Login", new_session_path unless current_user %>
 
 <%= link_to "Sign Up", new_user_path unless current_user %>
 
@@ -9,4 +9,4 @@
 <%= link_to "Browse Products by Category", '/products/by_category' %>
 <%#= collection_select "category", options_from_collection_for_select( @all_categories , "id", "name" ), :include_blank => true, :multiple => true %>
 
-<%= link_to "Browse Products by Seller", '/products/by_seller/:user_id' %>
+<%= link_to "Browse Products by Seller", '/products/by_seller' %>
