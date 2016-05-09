@@ -4,6 +4,7 @@
       <%= link_to product_path(product.id) do %>
       <%= image_tag(product.picture_url) %>
       <h4><%= product.name %></h4>
+      <% end %>
     <% end %>
 
     <div>
@@ -17,6 +18,4 @@
         <p><%= product.reviews %></p></div>
       <% end %>
     </div>
-    <% end %>
-  </div>
-</div>
+  </section>
