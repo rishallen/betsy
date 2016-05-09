@@ -13,11 +13,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(create_review_params)
+  user = create_review_params[:review]
+  user[:user_id] = session[:user_id]
+    @review = Review.new(user)
     if @review.save
-      redirect_to product_path(product.id)
+      flash[:sucess] = "Success!!"
+      redirect_to root_path
     else
-      render new_product_review_path(params[:product_id])
+      render :new
     end
   end
 
