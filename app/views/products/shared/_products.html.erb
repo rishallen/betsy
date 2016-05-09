@@ -1,31 +1,22 @@
 <section>
-<h1><%= name %></h1>
+  <h1><%= name %></h1>
     <% sorted.each do |product| %>
-      <div class="col-md-4">
-        <div class="thumbnail container-fluid">
+      <%= link_to product_path(product.id) do %>
+      <%= image_tag(product.picture_url) %>
+      <h4><%= product.name %></h4>
+    <% end %>
 
-          <%= link_to product_path(product.id) do %>
-            <%= image_tag(product.picture_url, class: "img-rounded products") %>
-            <h4 class="text-center"><%= product.name %></h4>
-          <% end %>
+    <div>
+      <h5> <%= number_to_currency(product.price) %></h5>
+    </div>
 
-            <div class="price">
-              <h5 class="pull-right"> <%= number_to_currency(product.price) %></h5>
-              <!-- <p>Stock: <%= product.stock %></p> -->
-            </div>
-
-            <div>
-              <% if product.reviews.count == 0 %>
-                <p>No Rating</p>
-              <% else %>
-                <p><%= produc %></p></div>
-              <% end %>
-              <!-- <p><%= product.reviews.count %> Reviews</p> -->
-            </div>
-
-        </div>
-      </div>
+    <div>
+      <% if product.reviews.count == 0 %>
+        <p>No Rating</p>
+      <% else %>
+        <p><%= product.reviews %></p></div>
+      <% end %>
+    </div>
     <% end %>
   </div>
 </div>
-Status API Training Shop Blog About

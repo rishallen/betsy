@@ -19,7 +19,7 @@
 <h1>Products by category</h1>
 <section>
   <% @categories.sort.each do |category| %>
-    <li><%= link_to category.upcase %></li>
+    <li><%= link_to category.upcase, by_category_products_path(category) %></li>
   <% end %>
 </section>
 
