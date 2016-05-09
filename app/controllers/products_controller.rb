@@ -3,10 +3,13 @@ class ProductsController < ApplicationController
   def index
   @sellers = show_sellers
   @categories =  show_category
+  @category = params[:category]
     if params[:category]
       by_category
+
     elsif params[:user_id]
       by_seller
+      
     else
       @products = Product.order('LOWER (category)')
     end
@@ -72,18 +75,11 @@ class ProductsController < ApplicationController
     @sellers = User.all.select { |user| user.products.count > 0 }
   end
 
-  def retire
-    if @product.stock == 0
-      return true
-    end
-    @product.save
-    redirect_to user_products_path(@product.user_id)
-  end
 
   private
 
   def product_params
-    params.permit(product: [:name, :description, :category, :price, :picture_url, :stock, :user_id])
+    params.permit(product: [:name, :description, :category, :status, :price, :picture_url, :stock, :user_id])
   end
 
 end

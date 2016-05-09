@@ -21,6 +21,9 @@
   <%= f.label :photo_url %>
   <%= f.text_field :photo_url %>
 
+  <%= f.check_box :status %>
+  <%= f.label :status, "Retire this product" %>
+
   <%= f.hidden_field(:user_id, :value => @user.id) %>
 
   <%= f.submit %>
