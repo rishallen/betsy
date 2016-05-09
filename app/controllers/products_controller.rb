@@ -36,6 +36,7 @@ class ProductsController < ApplicationController
   def create
     @user = User.find_by(id: params[:user_id])
     @product = @user.products.new(product_params[:product])
+
     if(@product.save)
       redirect_to user_products_path(@product.user_id)#redirect in case user tries to post another form - brings them to entered view
     else
@@ -58,6 +59,7 @@ class ProductsController < ApplicationController
   end
 
   def show_category
+    # @categories = Product.find_all[:category].uniq.downcase!
     @categories = Product.select('DISTINCT category').map(&:category)
   end
 
@@ -76,7 +78,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.permit(product: [:name, :description, :price, :category, :picture_url, :stock, :user_id])
+    params.permit(product: [:name, :description, :category, :price, :picture_url, :stock, :user_id])
   end
 
 end

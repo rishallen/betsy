@@ -18,8 +18,11 @@
 
 <h1>Products by category</h1>
 <section>
-  <% @categories.sort.each do |category| %>
+
+  <% @categories.each do |category| %>
+  <% if category %>
     <li><%= link_to category.upcase, by_category_products_path(category) %></li>
+    <% end %>
   <% end %>
 </section>
 
