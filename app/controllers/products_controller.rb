@@ -1,12 +1,14 @@
 class ProductsController < ApplicationController
 
   def index
+  @sellers = show_sellers
+  @categories =  show_category
     if params[:category]
       by_category
     elsif params[:user_id]
       by_seller
     else
-      @products = Product.all #order(category: :asc)
+      @products = Product.order('LOWER (category)')
     end
     render :index
   end
@@ -18,12 +20,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @user = User.find_by(id: params[:user_id])
     # @category = Product.find(1).category
   end
 
   def by_category
-    @category = Category.find_by(id: params[:category])
-    @products = @category.products
+    @products = Product.where(category: params[:category])
   end
 
   def by_seller
@@ -32,9 +34,10 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params[:product])
+    @user = User.find_by(id: params[:user_id])
+    @product = @user.products.new(product_params[:product])
     if(@product.save)
-      redirect_to product_path(params[:id])#redirect in case user tries to post another form - brings them to entered view
+      redirect_to user_products_path(@product.user_id)#redirect in case user tries to post another form - brings them to entered view
     else
       render :new
     end
@@ -48,18 +51,26 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update(product_params)
     if @product.save
-      redirect_to user_path(current_user)
+      redirect_to user_products_path(current_user)
     else
       render 'edit'
     end
   end
 
-  def out_of_stock
+  def show_category
+    @categories = Product.select('DISTINCT category').map(&:category)
+  end
+
+  def show_sellers
+    @sellers = User.all.select { |user| user.products.count > 0 }
+  end
+
+  def retire
     if @product.stock == 0
       return true
     end
     @product.save
-    redirect_to user_path(@product.user_id)
+    redirect_to user_products_path(@product.user_id)
   end
 
   private

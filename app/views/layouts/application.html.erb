@@ -14,13 +14,18 @@
   <nav class="navbar navbar-default">
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "New Product", new_product_path if seller? %></li>
       <li><%= link_to "Log In", new_session_path unless current_user %></li>
       <li><%= link_to "Log Out", logout_path, method: :delete if current_user %></li>
     </ul>
   </nav>
 
 <%= yield %>
+
+<%# if @user.errors.empty? %>
+  <% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, :id => key %>
+  <% end %>
+<%# end %>
 
   <h6>By the Lumbersexuals</h6>
 

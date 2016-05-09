@@ -10,4 +10,8 @@ class Product < ActiveRecord::Base
   has_many :carts, through: :cart_entries
   has_many :order_items
   has_many :orders, through: :order_items
+
+  def show_category
+    Product.select('DISTINCT category').map(&:category)
+  end
 end

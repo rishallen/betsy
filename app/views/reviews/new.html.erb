@@ -1,13 +1,12 @@
-<%= form_for [@review, @product, @user] do |f| %>
-  Item rating (1-5):
+<%= form_for [@product, @review] do |f| %>
+  <h3>Item rating (1-5):</h3>
   <%= f.label :rating do %>
     <%= f.text_field :rating, placeholder: "5" %>
   <%end%>
   Review:
   <%= f.label :content do %>
-    <%= f.text_field :content, placeholder: "I love that you've probably never heard of it"%>
+    <%= f.text_area :content, placeholder: "I love that you've probably never heard of it"%>
   <%end%>
-  <%= f.hidden_field(:user_id, value: @user.id) %>
   <%= f.hidden_field(:product_id, value: @product.id) %>
   <%= f.submit %>
 <%end%>

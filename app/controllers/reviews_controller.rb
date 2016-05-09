@@ -1,19 +1,24 @@
 class ReviewsController < ApplicationController
   def new
-    unless (session[:user_id] == Product.find_by(params[:product_id]).user_id)
-      @review = Review.new
-      @user = User.find_by(id: session[:user_id])
-      @product = Product.find_by(params[:product_id])
-      render :new
+    # unless
+    if (session[:user_id] == Product.find(params[:product_id]).user_id)
+        flash[:nope] = "Nope - You can't leave a review for your own product!!!"
+      redirect_to root_path
     else
-      render new_session_path()
+      @product = Product.find(params[:product_id])
+      @review = Review.new
+      # @user = User.find(id: session[:user_id])
+      render :new
     end
   end
 
   def create
-    @review = Review.new(create_review_params)
+  user = create_review_params[:review]
+  user[:user_id] = session[:user_id]
+    @review = Review.new(user)
     if @review.save
-      redirect_to product_path(product.id)
+      flash[:sucess] = "Success!!"
+      redirect_to root_path
     else
       render :new
     end

@@ -1,0 +1,21 @@
+<section>
+  <h1><%= name %></h1>
+    <% sorted.each do |product| %>
+      <%= link_to product_path(product.id) do %>
+      <%= image_tag(product.picture_url) %>
+      <h4><%= product.name %></h4>
+      <% end %>
+    <% end %>
+
+    <div>
+      <h5> <%= number_to_currency(product.price) %></h5>
+    </div>
+
+    <div>
+      <% if product.reviews.count == 0 %>
+        <p>No Rating</p>
+      <% else %>
+        <p><%= product.reviews %></p></div>
+      <% end %>
+    </div>
+  </section>
