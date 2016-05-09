@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
   has_many :order_items
   has_many :orders, through: :order_items
 
-before_save { |product| product.category = product.category.downcase }
+  before_save { |product| product.category = product.category.downcase }
 
   def show_category
     Product.select('DISTINCT category').map(&:category)

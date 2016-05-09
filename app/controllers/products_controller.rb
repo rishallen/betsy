@@ -46,13 +46,18 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @user = User.find(params[:user_id])
+    if session[:user_id] != @product.user_id
+      flash[:nope] = "Nope - This is not your product!!!"
+      redirect_to root_path
+    end
   end
 
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
+    @product.update(product_params[:product])
     if @product.save
-      redirect_to user_products_path(current_user)
+      redirect_to user_products_path(@product.user_id)
     else
       render 'edit'
     end
