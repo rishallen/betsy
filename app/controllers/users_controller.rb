@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     @user = User.new(user_create_params[:user])
     if @user.save
       flash[:success] = "Success!!!"
+
+      # user = User.log_in(params[:email], params[:password])
+      session[:user_id] = @user.id
       # redirect_to @user
       redirect_to root_path
     else
