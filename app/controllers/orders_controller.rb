@@ -28,26 +28,32 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit #Editing orders should only be "PENDING" orders, should be in cart
-    @order = current_order
-    @order_items = @order.order_items
-      render user_cart_path
-  end
-
-  def update
-    @order = current_order
-    @order_items = @order.order_items.update(params[:order_items]) #fix this, I don't know what I'm doing
-    render user_cart_path
-  end
+  # def edit #Editing orders should only be "PENDING" orders, should be in cart
+  #   @order = current_order
+  #   @order_items = @order.order_items
+  #     render user_cart_path
+  # end
+  #
+  # def update
+  #   @order = current_order
+  #   @order_items = @order.order_items.update(params[:order_items]) #fix this, I don't know what I'm doing
+  #   render user_cart_path
+  # end
 
   def cart
     @order_items = current_order.order_items
   end
 
   def add_to_cart
+    ## REDUNDANT ??? 
+    #if product_id already in current_order, just add + 1, else
     #add one item by :product_id param to the current_order
-    # current_order.save
-    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    if !current_order.order_items.where(product_id: params[:product_id]).empty?
+      item = current_order.order_items.find_by(product_id: params[:product_id])
+      item.quantity = item.quantity + 1
+    else
+      current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    end
     #  binding.pry
     redirect_to cart_path
   end

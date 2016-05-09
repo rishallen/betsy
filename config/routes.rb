@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
+
   resources :products, except: [:new, :create, :update, :edit] do
     resources :reviews
     collection do
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   get '/cart' => 'orders#cart'
-  post '/cart' => 'order_item#update'
+
 
   get '/cart/checkout' => 'orders#checkout'
   patch '/cart/checkout' => 'orders#order_placed' #does patch need to point to checkout page? Or to the destination?
@@ -83,4 +84,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   post '/add_to_cart/:product_id' => 'orders#add_to_cart', :as => 'add_to_cart'
+  post '/cart' => 'order_items#update'
+  delete '/cart/order_items/:id' => 'order_items#destroy', :as => 'delete_order_item'
 end

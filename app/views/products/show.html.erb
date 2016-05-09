@@ -16,11 +16,13 @@
 
 <%= link_to "Leave a review for this product", new_product_review_path(@product.id)%>
 <h2>Reviews</h2>
- <h2><%= @product.reviews.count %>
+ <%= @product.reviews.count %>
    <% @product.reviews.each do |review| %>
       <li><%= review.rating %></li>
       <li><%= review.content %></li>
 
         <% end %>
 
+
 <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
+There are <%= @product.stock %> items in stock.

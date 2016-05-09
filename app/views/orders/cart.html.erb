@@ -2,10 +2,15 @@
 
 
 <%@order_items.each do |item|%>
-  <%=Product.find_by(id: item.product_id).name%>
-  <%= form_tag cart_path, method: :post do%>
+  <%product = Product.find_by(id: item.product_id)%>
+  <%= product.name %>
+
+  <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
     <%= label_tag :quantity, "Quantity:" %>
-    <%= text_field_tag :quantity %>
+    <% array = (1..product.stock).to_a %>
+    <%= select_tag(:quantity, options_for_select(array, item.quantity)) %>
+    <%= hidden_field_tag :id, item.id %>
     <%= submit_tag "Update"%>
+    <%= link_to "Delete", delete_order_item_path(item.id), method: :delete %>
   <%end%>
 <%end%>
