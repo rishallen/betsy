@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
   def new
     # unless
-      if (session[:user_id] == Product.find(params[:product_id]).user_id)
-        root_path
-      else
+    if (session[:user_id] == Product.find(params[:product_id]).user_id)
+      redirect_to root_path
+    else
+      @product = Product.find(params[:product_id])
       @review = Review.new
-      @user = User.find_by(id: session[:user_id])
-      @product = Product.find_by(params[:product_id])
-      render new_product_review_path
+      # @user = User.find(id: session[:user_id])
+      render new_product_review_path(@product.id)
     end
   end
 
