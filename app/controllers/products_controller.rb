@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @order_item = current_order.order_items.find_by(product_id: params[:id]) #returns nil if not found 
     render :show
   end
 

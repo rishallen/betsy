@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
-    @mechant_orders = Order.find_by(user_id: session[:user_id])
+    if session[:user_id]
+      @user = User.find_by(id: session[:user_id])
+      @order_items = OrderItem.where(product_id: @user.products)
+    else
+      render :new_session_path
+    end
     # @order_items = @merchant_orders.order_items
     render :index
   end
@@ -44,8 +49,13 @@ class OrdersController < ApplicationController
     @order_items = current_order.order_items
   end
 
+  def checkout
+    @order = current_order
+    render :checkout
+  end
+
   def add_to_cart
-    ## REDUNDANT ??? 
+    ## REDUNDANT ???
     #if product_id already in current_order, just add + 1, else
     #add one item by :product_id param to the current_order
     if !current_order.order_items.where(product_id: params[:product_id]).empty?
@@ -71,14 +81,14 @@ class OrdersController < ApplicationController
       if current_stock-item.quantity >= 0
         Product.find_by(id: product_id).update(stock: (current_stock-item.quantity))
       else
-        item.quantity.update(quantity: current_stock)
+        item.update(quantity: current_stock)
         Product.find_by(id: product_id).update(stock: 0)
       end
     end
     @order_placed = current_order
     @order_placed.update(create_order_params[:order])
-    if sessions[:user_id]
-      @order = Order.create(status: "pending", user_id: sessions[:user_id])
+    if session[:user_id]
+      @order = Order.create(status: "pending", user_id: session[:user_id])
     else
       @order = Order.create(status: "pending")
     end

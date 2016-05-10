@@ -24,8 +24,30 @@
         <% end %>
 
 
-<%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
-There are <%= @product.stock %> items in stock.
+
+<% if @product.stock == 0 %>
+  This item is out of stock.
+<%else%>
+
+  <% if @order_item.nil? %>
+  <% #product is not in cart at all %>
+    <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
+
+  <% else %>
+  <% #product is already in cart, update quantity %>
+    Product already in cart. Update quantity:
+    <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
+      <%= label_tag :quantity, "Items in cart:" %>
+      <% array = (1..@product.stock).to_a %>
+      <%= select_tag(:quantity, options_for_select(array, @order_item.quantity)) %>
+      <%= hidden_field_tag :id, @order_item.id %>
+      <%= submit_tag "Update"%>
+      <%= link_to "Delete", delete_order_item_path(@order_item.id), method: :delete %>
+    <% end %>
+
+  <%end%>
+<%end%>
+
 
 <section>
   <% if session[:user_id] == @product.user_id %>
