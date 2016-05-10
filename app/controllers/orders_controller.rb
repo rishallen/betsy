@@ -1,9 +1,17 @@
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
+
     if session[:user_id]
       @user = User.find_by(id: session[:user_id])
       @order_items = OrderItem.where(product_id: @user.products)
+      if !@order_items.empty?
+        @order_items.each do |item|
+          (@order_items_paid << item) if item.order.status == "paid"
+          (@order_items_complete << item) if item.order.status == "complete"
+        end
+      #NEEDS ADDITIONAL CLAUSES TO IDENTIFY ORDER FROM ORDER ITEMS
+      end
     else
       render :new_session_path
     end
@@ -87,10 +95,13 @@ class OrdersController < ApplicationController
     end
     @order_placed = current_order
     @order_placed.update(create_order_params[:order])
+    @order_placed.update(status: "paid")
     if session[:user_id]
       @order = Order.create(status: "pending", user_id: session[:user_id])
+      session[:order_id] = @order.id
     else
       @order = Order.create(status: "pending")
+      session[:order_id] = @order.id
     end
     render :order_review
   end
