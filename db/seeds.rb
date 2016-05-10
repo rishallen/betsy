@@ -33,7 +33,6 @@ products = [
     name: "How-To-Guide to your Beard Bowl",
     price: 29.99,
     user_id: 3,
-
     stock: 15,
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
@@ -43,7 +42,6 @@ products = [
     name: "STumP",
     price: 98.99,
     user_id: 3,
-
     stock: 15,
     description: "One-of-kind seating!",
     category: "Furniture",
