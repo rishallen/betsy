@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160509223411) do
     t.string   "photo_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.boolean  "status", default: false
+    t.boolean  "status"
   end
 
   create_table "reviews", force: :cascade do |t|
