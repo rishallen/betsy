@@ -2,7 +2,7 @@
 
 <% sum = 0 %>
 <%@order_items.each do |item|%>
-  <%product = Product.find_by(id: item.product_id)%>
+  <%product = Product.find(item.product_id)%>
   <%= product.name %> : $<%= product.price%>
 
   <%sum += (product.price)*(item.quantity)%>

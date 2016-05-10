@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
       @user = User.find_by(id: session[:user_id])
       @order_items = OrderItem.where(product_id: @user.products)
       if !@order_items.empty?
+        @order_items_paid = []
+        @order_items_complete = []
         @order_items.each do |item|
           (@order_items_paid << item) if item.order.status == "paid"
           (@order_items_complete << item) if item.order.status == "complete"

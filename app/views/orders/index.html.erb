@@ -12,7 +12,7 @@ Orders waiting to be shipped:
   <div class = "paid orders">
 
 
-    <%= link_to Product.find(item.product_id).name, product_path(item.product_id)%>: <%= User.find_by(id: item.order.user_id).username%>
+    <%= link_to Product.find(item.product_id).name, product_path(item.product_id)%>: <%= User.find_by(id: item.order.user_id).nil? ? "Guest" : "#{User.find_by(id: item.order.user_id).username}" %>
     <% @paid_sum +=(Product.find(item.product_id).price * item.quantity)%><div class = "price">Unit price: $<%= Product.find(item.product_id).price %>
     Subtotal: <%= Product.find(item.product_id).price * item.quantity%></div>
     <%= item.order.updated_at %> <%= item.order.status%>
