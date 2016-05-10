@@ -22,10 +22,11 @@ $<%= @sum %>
   <%= f.text_field :cc_digits%>
   Expiration date:
   <%= f.label :expiration %>
-  <%= f.text_field :expiration %>
+  <%= f.date_select :expiration %>
 
+  <% hidden_field_tag :status, "paid" %>
   <% if session[:user_id] %>
     <%hidden_field_tag :user_id, session[:user_id] %>
   <%end%>
-  <%= f.submit%>
+  <%= f.submit "Place Order"%>
 <%end%>
