@@ -1,7 +1,20 @@
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
-    @mechant_orders = Order.find_by(user_id: session[:user_id])
+
+    if session[:user_id]
+      @user = User.find_by(id: session[:user_id])
+      @order_items = OrderItem.where(product_id: @user.products)
+      if !@order_items.empty?
+        @order_items.each do |item|
+          (@order_items_paid << item) if item.order.status == "paid"
+          (@order_items_complete << item) if item.order.status == "complete"
+        end
+      #NEEDS ADDITIONAL CLAUSES TO IDENTIFY ORDER FROM ORDER ITEMS
+      end
+    else
+      render :new_session_path
+    end
     # @order_items = @merchant_orders.order_items
     render :index
   end
@@ -44,22 +57,19 @@ class OrdersController < ApplicationController
     @order_items = current_order.order_items
   end
 
+  def checkout
+    @order = current_order
+    render :checkout
+  end
+
   def add_to_cart
-    ## REDUNDANT ???
-    #if product_id already in current_order, just add + 1, else
-    #add one item by :product_id param to the current_order
-    if !current_order.order_items.where(product_id: params[:product_id]).empty?
-      item = current_order.order_items.find_by(product_id: params[:product_id])
-      item.quantity = item.quantity + 1
-    else
       current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
-    end
     #  binding.pry
     redirect_to cart_path
   end
 
   def destroy # A "clear cart" function?
-    @order = current_order.order_items.destroy #may not be right
+    @order = current_order.order_items.destroy
 
   end
 
@@ -71,16 +81,19 @@ class OrdersController < ApplicationController
       if current_stock-item.quantity >= 0
         Product.find_by(id: product_id).update(stock: (current_stock-item.quantity))
       else
-        item.quantity.update(quantity: current_stock)
+        item.update(quantity: current_stock)
         Product.find_by(id: product_id).update(stock: 0)
       end
     end
     @order_placed = current_order
     @order_placed.update(create_order_params[:order])
-    if sessions[:user_id]
-      @order = Order.create(status: "pending", user_id: sessions[:user_id])
+    @order_placed.update(status: "paid")
+    if session[:user_id]
+      @order = Order.create(status: "pending", user_id: session[:user_id])
+      session[:order_id] = @order.id
     else
       @order = Order.create(status: "pending")
+      session[:order_id] = @order.id
     end
     render :order_review
   end

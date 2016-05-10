@@ -1,29 +1,32 @@
+<%@sum = 0%>
 <h2>Order summary:</h2>
-<h3>Order #<%=@order.id%>, <%=@order.status%>:</h3>
-<%=@order.order_items.each do |item|%>
-  <%= link_to "#{Product.find_by(item.product_id).name}", product_path(item.product_id) %> : <%=item.quantity%>
-  Unit price: <%=(Product.find_by(item.product_id).price%>
-  Item price subtotal:<%=@item_price = (Product.find_by(item.product_id).price) * item.quantity%>
-  <%@sum += @item_price%>
+<h3>Order #<%=current_order.id%>, <%=current_order.status%>:</h3>
+<%current_order.order_items.each do |item|%>
+  <%= link_to "#{Product.find_by(id: item.product_id).name}", product_path(item.product_id) %> : <%=item.quantity%>
+  Unit price: <%=Product.find_by(id: item.product_id).price%>
+  Item price subtotal:<%=@item_price = (Product.find_by(id: item.product_id).price) * item.quantity%>
+  <%(@sum += @item_price) if @item_price>0%>
+  <br />
 <%end%>
 Order total:
 $<%= @sum %>
 
 <h2>Enter your order details below:</h2>
-<%= form_for @order do %>
+<%= form_for @order, url: cart_checkout_path, html: {method: :patch} do |f| %>
   Mailing and billing address:
   <%= f.label :mailing_address %>
     <%= f.text_field :mailing_address%>
-  <%end%>
+
   Credit card number:
-  <%= f.label :digits %>
-  <%= f.text_field :digits%>
+  <%= f.label :cc_digits %>
+  <%= f.text_field :cc_digits%>
   Expiration date:
   <%= f.label :expiration %>
-  <%= f.text_field :expiration %>
-  <%end%>
+  <%= f.date_select :expiration %>
+
+  <% hidden_field_tag :status, "paid" %>
   <% if session[:user_id] %>
-    <%= hidden_field_tag :user_id, session[:user_id] %>
+    <%hidden_field_tag :user_id, session[:user_id] %>
   <%end%>
-  <%= f.submit %>
+  <%= f.submit "Place Order"%>
 <%end%>
