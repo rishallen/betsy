@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
       @user = User.find_by(id: session[:user_id])
       @order_items = OrderItem.where(product_id: @user.products)
       if !@order_items.empty?
+        @order_items_paid = []
+        @order_items_complete = []
         @order_items.each do |item|
           (@order_items_paid << item) if item.order.status == "paid"
           (@order_items_complete << item) if item.order.status == "complete"
@@ -63,21 +65,13 @@ class OrdersController < ApplicationController
   end
 
   def add_to_cart
-    ## REDUNDANT ???
-    #if product_id already in current_order, just add + 1, else
-    #add one item by :product_id param to the current_order
-    if !current_order.order_items.where(product_id: params[:product_id]).empty?
-      item = current_order.order_items.find_by(product_id: params[:product_id])
-      item.quantity = item.quantity + 1
-    else
       current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
-    end
     #  binding.pry
     redirect_to cart_path
   end
 
   def destroy # A "clear cart" function?
-    @order = current_order.order_items.destroy #may not be right
+    @order = current_order.order_items.destroy
 
   end
 
@@ -108,6 +102,6 @@ class OrdersController < ApplicationController
 
   private
   def create_order_params
-    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
+    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration, :checkout_price]) #double check attributes
   end
 end
