@@ -1,0 +1,21 @@
+<h2>View Order</h2>
+<% @sum = 0%>
+<h3>Order #<%=@order_placed.id%>, Status: <%=@order_placed.status%></h3>
+Order placed on: <%=@order_placed.updated_at%>
+
+<%@order_items.each do |item|%>
+  <%= link_to "#{Product.find_by(id: item.product_id).name}", product_path(item.product_id) %> : <%=item.quantity%>
+  Unit price: <%=(Product.find_by(id: item.product_id)).price%>
+  Item price subtotal:<%=@item_price = ((Product.find_by(id: item.product_id)).price) * item.quantity%>
+  <%@sum += @item_price%>
+<%end%>
+Order total:
+$<%= @sum %>
+
+
+### IN PROGRESS
+Name
+Email address
+Mailing address
+Last four digits of their credit card
+Credit card expiration date
