@@ -30,7 +30,7 @@ products = [
     photo_url: "http://sobadsogood.com/uploads/media/2015/12/07/These-Glitter-Beards-Are-Sure-To-Get-You-In-The-Festive-Spirit.jpg"
   },
   {
-    name: "How To Guide to your Beard Bowl",
+    name: "How-To-Guide to your Beard Bowl",
     price: 29.99,
     user_id: 3,
 
@@ -38,7 +38,18 @@ products = [
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
     photo_url: "http://i.kinja-img.com/gawker-media/image/upload/s--yLgLfF9M--/c_scale,fl_progressive,q_80,w_800/191643wh1xaatjpg.jpg"
+  },
+  {
+    name: "STumP",
+    price: 98.99,
+    user_id: 3,
+
+    stock: 15,
+    description: "One-of-kind seating!",
+    category: "Furniture",
+    photo_url: "http://i.kinja-img.com/gawker-media/image/upload/s--yLgLfF9M--/c_scale,fl_progressive,q_80,w_800/191643wh1xaatjpg.jpg"
   }
+
 ]
 
 
