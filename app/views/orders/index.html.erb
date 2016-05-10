@@ -1,6 +1,6 @@
 <h2>Your orders:</h2>
 
-<%@mechant_orders.each do |order| %>
-  <%= link_to order.id, order_path%>: <%= User.find_by(id: order.user_id).username%>
-  <%= order.created_at %> <%= order.status%>
+<%@order_items.each do |item| %>
+  <%= link_to Product.find(item.product_id).name, product_path(item.product_id)%>: <%= User.find_by(id: item.order.user_id).username%>
+  <%= item.order.updated_at %> <%= item.order.status%>
 <%end%>

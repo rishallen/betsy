@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
-    @mechant_orders = Order.find_by(user_id: session[:user_id])
+    if session[:user_id]
+      @user = User.find_by(id: session[:user_id])
+      @order_items = OrderItem.where(product_id: @user.products)
+    else
+      render :new_session_path
+    end
     # @order_items = @merchant_orders.order_items
     render :index
   end
