@@ -4,6 +4,12 @@
 <%@order_items.each do |item|%>
   <%product = Product.find_by(id: item.product_id)%>
   <%= product.name %> : $<%= product.price%>
+  <a href= "<%=product_path(product.id)%>" class = "product-image">
+    <img src="<%=product.photo_url%>">
+   <caption>
+     <%=product.name%>
+   </caption>
+ </img></a>
 
   <%sum += (product.price)*(item.quantity)%>
 
