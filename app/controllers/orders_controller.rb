@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
   end
 
   def add_to_cart
-    ## REDUNDANT ??? 
+    ## REDUNDANT ???
     #if product_id already in current_order, just add + 1, else
     #add one item by :product_id param to the current_order
     if !current_order.order_items.where(product_id: params[:product_id]).empty?
@@ -87,6 +87,6 @@ class OrdersController < ApplicationController
 
   private
   def create_order_params
-    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
+    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration, :checkout_price]) #double check attributes
   end
 end
