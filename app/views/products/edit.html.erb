@@ -1,6 +1,6 @@
 <pre><%= params %></pre>
 
-<h1>New product</h1>
+<h1>Edit product</h1>
 
 <%= form_for [@user, @product] do |f| %>
   <%= f.label :name %>
@@ -17,10 +17,14 @@
 
   <%= f.label :category %>
   <%= f.text_area :category %>
-  <%#= f.collection_select :category, @product, :id, :name, { }, { multiple: true } %>
 
   <%= f.label :photo_url %>
   <%= f.text_field :photo_url %>
 
+  <%= f.check_box :status %>
+  <%= f.label :status, "Retire this product" %>
+
+  <%= f.hidden_field(:user_id, :value => @user.id) %>
+
   <%= f.submit %>
-  <% end %>
+<% end %>
