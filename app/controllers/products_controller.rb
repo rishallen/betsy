@@ -9,16 +9,16 @@ class ProductsController < ApplicationController
 
     elsif params[:user_id]
       by_seller
-      
+
     else
-      @products = Product.order('LOWER (category)')
+      @products = Product.where(status: false).order('LOWER (category)')
     end
     render :index
   end
 
   def show
     @product = Product.find(params[:id])
-    @order_item = current_order.order_items.find_by(product_id: params[:id]) #returns nil if not found 
+    @order_item = current_order.order_items.find_by(product_id: params[:id]) #returns nil if not found
     render :show
   end
 
@@ -29,12 +29,12 @@ class ProductsController < ApplicationController
   end
 
   def by_category
-    @products = Product.where(category: params[:category])
+    @products = Product.where(status: false).where(category: params[:category])
   end
 
   def by_seller
     @user = User.find_by(id: params[:user_id])
-    @products = @user.products
+    @products = @user.products.where(status: false)
   end
 
   def create
