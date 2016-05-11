@@ -19,8 +19,8 @@ Orders waiting to be shipped:
 
   </div>
 
+  <%= link_to "View Order Information", order_path(item.order_id) %>
   <%end%>
-
     Status "paid" total: $<%=@paid_sum%>
 <%end%>
 
