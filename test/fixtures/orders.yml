@@ -4,16 +4,16 @@ one:
   id: 1
   item_id: 1
   user_id: 1
-  status: MyString
-  mailing_address: MyString
-  cc_digits: 1
+  status: Pending
+  mailing_address: Sesame Street
+  cc_digits: 4455
   expiration: 2016-05-02
 
 two:
   id: 2
   item_id: 1
   user_id: 1
-  status: MyString
-  mailing_address: MyString
-  cc_digits: 1
+  status: Paid
+  mailing_address: Miracle Street
+  cc_digits: 2233
   expiration: 2016-05-02
