@@ -14,15 +14,25 @@
   <%= @product.category %>
   <%= image_tag(@product.photo_url) %>
 
-<%= link_to "Leave a review for this product", new_product_review_path(@product.id)%>
-<h2>Reviews</h2>
- <%= @product.reviews.count %>
+<h3><%= link_to "Leave a review for this product", new_product_review_path(@product.id)%></h3>
+<h2>Reviews for <%= @product.name %></h2>
+
+ <% if @product.reviews.count > 0 %>
+
+
    <% @product.reviews.each do |review| %>
-      <li><%= review.rating %></li>
-      <li><%= review.content %></li>
-
-        <% end %>
-
+   <div class = "review">
+      <% if review.user_id %>
+        <%= User.find_by(id: review.user_id).username %> says:
+      <%end%>
+      <%= review.rating %><br />
+      "<%= review.content %>"
+    </div>
+    <% end %>
+    <%else%>
+    "Be the first to "<%= link_to "leave a review for this product", new_product_review_path(@product.id)%>"
+<%end%>
+<br />
 
 
 <% if @product.stock == 0 %>
