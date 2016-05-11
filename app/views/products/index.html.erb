@@ -7,7 +7,7 @@
   <ul>
     <% @products.each do |product| %>
       <li class = "product"><a href= "<%=product_path(product.id)%>" class = "product-image">
-        <img src="<%=product.photo_url%>">
+        <%= image_tag product.photo_url %>>
        <caption>
          <%=product.name%>
        </caption>
