@@ -11,7 +11,7 @@
         <div class="panel panel-default">
           <div class="panel-heading"><%=product.name%></div>
             <li class = "panel-body"><a href= "<%=product_path(product.id)%>" >
-              <img src="<%=product.photo_url%>" class="img-rounded" style="width:240px;height:200px;">
+              <%= image_tag product.photo_url %>
                <caption>
                </caption>
               </img></a>

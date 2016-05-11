@@ -18,7 +18,7 @@ products = [
     stock: 20,
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
-    photo_url: 'Mustachifier.jpg'
+    photo_url: 'ryan.jpg'
   },
   {
     name: "Glitter Beard Kit",
