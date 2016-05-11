@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
+      session[:order_id] = Order.where(user_id: user.id).last.id
       redirect_to root_path
     else
       flash[:wrong_sign_in] = "Wrong Email or Password"
@@ -17,6 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete :user_id
+    session.delete :order_id
     redirect_to root_path
   end
 end
