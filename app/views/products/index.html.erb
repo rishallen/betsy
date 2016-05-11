@@ -1,6 +1,4 @@
-<pre><% params %></pre>
-
-<h1>All Products</h1>
+<h1>Products</h1>
 <% if @category %>
   <h3>Filtered By <%= @category.titleize %></h3>
 <% end %>
@@ -8,7 +6,13 @@
 <section>
   <ul>
     <% @products.each do |product| %>
-      <li><%= link_to product.name, product_path(product.id)%></li>
+      <li class = "product"><a href= "<%=product_path(product.id)%>" class = "product-image">
+        <img src="<%=product.photo_url%>">
+       <caption>
+         <%=product.name%>
+       </caption>
+     </img></a>
+     </li>
     <%end%>
   </ul>
 </section>
@@ -16,22 +20,5 @@
 <section>
   <% if current_user %>
   <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
-  <% end %>
-</section>
-
-<h1>Products by category</h1>
-<section>
-
-  <% @categories.each do |category| %>
-  <% if category %>
-    <li><%= link_to category.upcase, by_category_products_path(category) %></li>
-    <% end %>
-  <% end %>
-</section>
-
-<h1>Products by sellers</h1>
-<section>
-  <% @sellers.each do |seller| %>
-    <li><%= link_to seller.username, user_products_path(seller.id) %></li>
   <% end %>
 </section>

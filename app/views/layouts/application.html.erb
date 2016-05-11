@@ -2,8 +2,12 @@
 <html>
 <head>
   <title>Betsy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,12 +18,43 @@
   <nav class="navbar navbar-default">
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "My orders", user_orders_path(session[:user_id])  if current_user %></li>
+      <li><%= link_to "My Orders", user_orders_path(session[:user_id])  if current_user %></li>
       <li><%= link_to "Log In", new_session_path unless current_user %></li>
       <li><%= link_to "Log Out", logout_path, method: :delete if current_user%></li>
+      <li>
+        <%= link_to "Sign Up", new_user_path unless current_user %>
+      </li>
       <li><%= link_to "Cart", cart_path %></li>
     </ul>
   </nav>
+
+<aside class = "sidebar">
+  <section>
+    <% if current_user %>
+    <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
+    <% end %>
+  </section>
+
+  <h3><%= link_to "View all products", products_path%></h3>
+  <h3>Browse products by</h3>
+  <h4>Category:</h4>
+  <section>
+    <% @categories = Product.select('DISTINCT category').map(&:category)%>
+    <% @categories.each do |category| %>
+    <% if category %>
+      <li><%= link_to category.upcase, by_category_products_path(category) %></li>
+      <% end %>
+    <% end %>
+  </section>
+
+  <h4>Sellers:</h4>
+  <section>
+    <% @sellers = User.all.select { |user| user.products.count > 0 } %>
+    <% @sellers.each do |seller| %>
+      <li><%= link_to seller.username, user_products_path(seller.id) %></li>
+    <% end %>
+  </section>
+</aside>
 
 <%= yield %>
 
@@ -28,8 +63,10 @@
     <%= content_tag :div, msg, :id => key %>
   <% end %>
 <%# end %>
+<footer>
 
   <h6>By the Lumbersexuals</h6>
+</footer>
 
 </body>
 </html>
