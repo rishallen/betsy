@@ -100,7 +100,7 @@ products = [
     description: "Make friends on the subway!",
     category: "Miscellaneous",
     photo_url: 'Subway_record_player.jpg'
-  }
+  },
 ]
 
 
