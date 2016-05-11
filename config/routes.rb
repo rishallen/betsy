@@ -86,4 +86,5 @@ Rails.application.routes.draw do
   post '/add_to_cart/:product_id' => 'orders#add_to_cart', :as => 'add_to_cart'
   post '/cart' => 'order_items#update'
   delete '/cart/order_items/:id' => 'order_items#destroy', :as => 'delete_order_item'
+  get 'orders/:id' => 'orders#show', :as => 'order'
 end
