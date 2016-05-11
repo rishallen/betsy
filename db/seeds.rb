@@ -14,40 +14,93 @@ products = [
   {
     name: "Mustachifier",
     price: 9.99,
-    user_id: 1,
+    user_id: 44,
     stock: 20,
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
-    photo_url: "http://shutupandtakemymoney.com/wp-content/uploads/2013/10/mustachifier-300x250.jpg"
+    photo_url: 'Mustachifier.jpg'
   },
   {
     name: "Glitter Beard Kit",
     price: 99.99,
-    user_id: 2,
+    user_id: 44,
     stock: 10,
     description: "Celebrate every day with a festive Glitter Beard! So easy to do! AND you'll leave behind a little glitter everywhere you go!",
     category: "Personal Care",
-    photo_url: "http://sobadsogood.com/uploads/media/2015/12/07/These-Glitter-Beards-Are-Sure-To-Get-You-In-The-Festive-Spirit.jpg"
+    photo_url: 'Glitter_Beard.jpg'
   },
   {
     name: "How-To-Guide to your Beard Bowl",
     price: 29.99,
-    user_id: 3,
+    user_id: 44,
     stock: 15,
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
-    photo_url: "http://i.kinja-img.com/gawker-media/image/upload/s--yLgLfF9M--/c_scale,fl_progressive,q_80,w_800/191643wh1xaatjpg.jpg"
+    photo_url: 'Beard_Bowl.jpg'
   },
   {
     name: "STumP",
     price: 98.99,
-    user_id: 3,
+    user_id: 23,
     stock: 15,
     description: "One-of-kind seating!",
     category: "Furniture",
-    photo_url: "http://i.kinja-img.com/gawker-media/image/upload/s--yLgLfF9M--/c_scale,fl_progressive,q_80,w_800/191643wh1xaatjpg.jpg"
+    photo_url: 'stump.jpg'
+  },
+  {
+    name: "Crocheted Baby Beard",
+    price: 98.99,
+    user_id: 23,
+    stock: 15,
+    description: "One-of-kind warmth!",
+    category: "Baby",
+    photo_url: 'Baby_beard.jpg'
+  },
+  {
+    name: "Baby Mason Bottle",
+    price: 28.99,
+    user_id: 23,
+    stock: 15,
+    description: "One-of-kind drinking!",
+    category: "Baby",
+    photo_url: 'baby_mason_bottle.jpg'
+  },
+  {
+    name: "Headphones All Ways",
+    price: 98.99,
+    user_id: 33,
+    stock: 15,
+    description: "Don't get caught with the wrong audioware!",
+    category: "Miscellaneous",
+    photo_url: 'Headers.jpg'
+  },
+  {
+    name: "Longboard Stroller",
+    price: 998.99,
+    user_id: 33,
+    stock: 15,
+    description: "You're still cool even with a kid!",
+    category: "Baby",
+    photo_url: 'Longboard_stroller.jpg'
+  },
+  {
+    name: "Selfie Shirt",
+    price: 98.99,
+    user_id: 33,
+    stock: 15,
+    description: "One-of-kind shirt!",
+    category: "Clothing",
+    photo_url: 'SelfieShirt.jpg'
+  },
+  {
+    name: "Subway Record Player",
+    price: 898.99,
+    user_id: 3,
+    stock: 15,
+    description: "Make friends on the subway!",
+    category: "Miscellaneous",
+    photo_url: 'Subway_record_player.jpg'
   }
-
 ]
 
 
