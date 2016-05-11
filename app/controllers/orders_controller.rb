@@ -89,8 +89,10 @@ class OrdersController < ApplicationController
       item.update(checkout_price: Product.find_by(id: product_id).price)
     end
     @order_placed = current_order
-    @order_placed.update(create_order_params[:order])
-    @order_placed.update(status: "paid")
+    order_info = create_order_params[:order]
+    order_info[:cc_digits] = order_info[:cc_digits][-4..-1].to_i
+    order_info[:status] = "paid"
+    @order_placed.update(order_info)
     if session[:user_id]
       @order = Order.create(status: "pending", user_id: session[:user_id])
       session[:order_id] = @order.id
