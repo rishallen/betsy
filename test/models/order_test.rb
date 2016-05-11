@@ -21,7 +21,6 @@ class OrderTest < ActiveSupport::TestCase
     assert things.save
   end
 
-
   test "order belongs to user" do
     things = Order.find(1)
     assert_equal things.user_id, 1
