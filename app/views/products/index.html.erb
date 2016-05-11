@@ -2,20 +2,19 @@
 <% if @category %>
   <h3>Filtered By <%= @category.titleize %></h3>
 <% end %>
-
 <section class="container col-xs-8">
   <ul>
     <div>
       <% @products.each do |product| %>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="panel panel-default">
-          <div class="panel-heading"><%=product.name%></div>
             <li class = "panel-body"><a href= "<%=product_path(product.id)%>" >
-              <img src="<%=product.photo_url%>" class="img-rounded" style="width:240px;height:200px;">
                <caption>
+                 <div><%= image_tag(product.photo_url, :size => "240x250") %></div>
                </caption>
               </img></a>
             </li>
+            <div class="panel-heading"><%=product.name%></div>
         </div>
       </div>
       <%end%>
