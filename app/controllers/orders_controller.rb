@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(:id) #requires order id be passed in!
+    @order = Order.find(params[:id]) #requires order id be passed in!
     @order_items = @order.order_items
     render :show
   end
