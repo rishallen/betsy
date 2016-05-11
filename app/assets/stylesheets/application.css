@@ -15,7 +15,6 @@
  */
  html {
    background-color: #444;
-   color: #eee;
    align: center;
    text-align: center;
    height: 100%;
@@ -28,23 +27,31 @@
    height: 100%;
  }
 
+ .navbar .navbar-collapse {
+  text-align: center;
+}
+
 nav {
+  vertical-align: top;
+  float: none;
   background-color: #111;
   display: inline-block;
   width: 100%;  background-color: #444;
   border: 1px solid rgba(100, 100, 100, 0.5);
+  text-align: center;
 }
 
 nav li{
-  float: left;
-  width: 20%;
   line-height: 2rem;
   margin: 0;
 }
 
 ul {
+  display: inline-block;
   text-decoration: none;
   list-style: none;
+  text-align: center;
+  margin: auto;
 }
 
 .sidebar {

@@ -24,4 +24,6 @@
 <%end%>
 Order total: $<%= sum%>
 
-<%= link_to "Checkout", cart_checkout_path(current_order.id) %>
+
+
+<%= button_to "Checkout", cart_checkout_path(current_order.id), method: :get %>
