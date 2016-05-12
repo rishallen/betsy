@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 # #
 one:
+  id: 1
   name: "product one"
   price: 1
   user_id: 1
@@ -15,6 +16,7 @@ one:
 # column: value
 #
 two:
+  id: 2
   name: "product two"
   price: 2
   user_id: 2
