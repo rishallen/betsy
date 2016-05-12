@@ -78,7 +78,9 @@ ul {
 
 footer {
   bottom: auto;
+  margin: 5rem 20rem;
 }
+
 /*img {
   width: 33%;
   float: left;
