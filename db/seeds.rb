@@ -14,7 +14,7 @@ products = [
   {
     name: "Mustachifier",
     price: 9.99,
-    user_id: 44,
+    user_id: 1,
     stock: 20,
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
@@ -23,7 +23,7 @@ products = [
   {
     name: "Glitter Beard Kit",
     price: 99.99,
-    user_id: 44,
+    user_id: 2,
     stock: 10,
     description: "Celebrate every day with a festive Glitter Beard! So easy to do! AND you'll leave behind a little glitter everywhere you go!",
     category: "Personal Care",
@@ -32,7 +32,7 @@ products = [
   {
     name: "How-To-Guide to your Beard Bowl",
     price: 29.99,
-    user_id: 44,
+    user_id: 3,
     stock: 15,
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
@@ -41,7 +41,7 @@ products = [
   {
     name: "STumP",
     price: 98.99,
-    user_id: 23,
+    user_id: 1,
     stock: 15,
     description: "One-of-kind seating!",
     category: "Furniture",
@@ -50,7 +50,7 @@ products = [
   {
     name: "Crocheted Baby Beard",
     price: 98.99,
-    user_id: 23,
+    user_id: 2,
     stock: 15,
     description: "One-of-kind warmth!",
     category: "Baby",
@@ -59,7 +59,7 @@ products = [
   {
     name: "Baby Mason Bottle",
     price: 28.99,
-    user_id: 23,
+    user_id: 3,
     stock: 15,
     description: "One-of-kind drinking!",
     category: "Baby",
@@ -68,7 +68,7 @@ products = [
   {
     name: "Headphones All Ways",
     price: 98.99,
-    user_id: 33,
+    user_id: 1,
     stock: 15,
     description: "Don't get caught with the wrong audioware!",
     category: "Miscellaneous",
@@ -77,7 +77,7 @@ products = [
   {
     name: "Longboard Stroller",
     price: 998.99,
-    user_id: 33,
+    user_id: 1,
     stock: 15,
     description: "You're still cool even with a kid!",
     category: "Baby",
@@ -86,7 +86,7 @@ products = [
   {
     name: "Selfie Shirt",
     price: 98.99,
-    user_id: 33,
+    user_id: 2,
     stock: 15,
     description: "One-of-kind shirt!",
     category: "Clothing",

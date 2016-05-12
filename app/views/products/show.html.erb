@@ -1,62 +1,66 @@
-<h1>Product Detail:</h1>
-
-<h2>Name:</h2>
-   <%= @product.name %>
-<h2>Price:</h2>
-  <%= @product.price %>
-<h2>Seller ID:</h2>
-  <%= @product.user_id %>
-<h2>In Stock:</h2>
-   <%= @product.stock %>
-<h2>Description:</h2>
-   <%= @product.description %>
-<h2>Category:</h2>
-  <%= @product.category %>
-  <%= image_tag(@product.photo_url) %>
-
-<h3><%= link_to "Leave a review for this product", new_product_review_path(@product.id)%></h3>
-<h2>Reviews for <%= @product.name %></h2>
-
- <% if @product.reviews.count > 0 %>
-
-
-   <% @product.reviews.each do |review| %>
-   <div class = "review">
-      <% if review.user_id %>
-        <%= User.find_by(id: review.user_id).username %> says:
-      <%end%>
-      <%= review.rating %><br />
-      "<%= review.content %>"
+<h1>Product Details:</h1>
+<section class="container col-xs-8">
+  <div class="col-lg-5 col-md-5 col-sm-5">
+    <div class="panel panel-default">
+      <section class = "panel-body">
+        <%= image_tag(@product.photo_url) %>
+      </section>
+      <div class="panel-heading"><h2><%= @product.name %></h2></div>
     </div>
-    <% end %>
-    <%else%>
-    "Be the first to "<%= link_to "leave a review for this product", new_product_review_path(@product.id)%>"
-<%end%>
-<br />
+      <h2>Price: $<%= @product.price %></h2>
+      <h2>Sold By: <%= User.find(@product.user_id).username %></h2>
+      <h2>In Stock: <%= @product.stock %></h2>
+      <h3><%= @product.description %></h3>
+      <h2>Category: <%= @product.category.titleize %></h2>
+  </div>
+</section>
+
+<section class="container col-xs-9">
+  <h3><%= link_to "Leave a review for this product", new_product_review_path(@product.id)%></h3>
+  <h2>Reviews for <%= @product.name %></h2>
+
+   <% if @product.reviews.count > 0 %>
 
 
-<% if @product.stock == 0 %>
-  This item is out of stock.
-<%else%>
-
-  <% if @order_item.nil? %>
-  <% #product is not in cart at all %>
-    <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
-
-  <% else %>
-  <% #product is already in cart, update quantity %>
-    Product already in cart. Update quantity:
-    <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
-      <%= label_tag :quantity, "Items in cart:" %>
-      <% array = (1..@product.stock).to_a %>
-      <%= select_tag(:quantity, options_for_select(array, @order_item.quantity)) %>
-      <%= hidden_field_tag :id, @order_item.id %>
-      <%= submit_tag "Update"%>
-      <%= link_to "Delete", delete_order_item_path(@order_item.id), method: :delete %>
-    <% end %>
-
+     <% @product.reviews.each do |review| %>
+     <div class = "review">
+        <% if review.user_id %>
+          <%= User.find_by(id: review.user_id).username %> says:
+        <%end%>
+        <%= review.rating %><br />
+        "<%= review.content %>"
+      </div>
+      <% end %>
+      <%else%>
+      "Be the first to "<%= link_to "leave a review for this product", new_product_review_path(@product.id)%>"
   <%end%>
-<%end%>
+</section>
+
+
+<section>
+  <% if @product.stock == 0 %>
+    This item is out of stock.
+  <%else%>
+
+    <% if @order_item.nil? %>
+    <% #product is not in cart at all %>
+      <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
+
+    <% else %>
+    <% #product is already in cart, update quantity %>
+      Product already in cart. Update quantity:
+      <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
+        <%= label_tag :quantity, "Items in cart:" %>
+        <% array = (1..@product.stock).to_a %>
+        <%= select_tag(:quantity, options_for_select(array, @order_item.quantity)) %>
+        <%= hidden_field_tag :id, @order_item.id %>
+        <%= submit_tag "Update"%>
+        <%= link_to "Delete", delete_order_item_path(@order_item.id), method: :delete %>
+      <% end %>
+
+    <%end%>
+  <%end%>
+</section>
 
 
 <section>
