@@ -10,9 +10,9 @@
         <div class="panel panel-default">
             <section class = "panel-body"><a href= "<%=product_path(product.id)%>" >
             <li class = "panel-body"><a href= "<%=product_path(product.id)%>" >
-              <div><%= image_tag(product.photo_url, :size => "260x270") %></div>
+              <%= image_tag(product.photo_url, :crop => :fill, class: "img-responsive", style: "padding-left: 0px;  padding-right: 0px;") %>
+              <!-- <div><%#= image_tag(product.photo_url) %></div> -->
                <caption>
-              </img></a>
             </section>
             <div class="panel-heading"><%=product.name%></div>
           </caption>
