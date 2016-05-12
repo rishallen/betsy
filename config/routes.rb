@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :reviews, :only => [:new, :create]
     resources :products, except: [:destroy]
   end
-
+  resources :reviews
   resources :products, except: [:new, :create, :update, :edit, :destroy] do
     resources :reviews, :only => [:new, :create]
     collection do

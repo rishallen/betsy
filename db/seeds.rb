@@ -106,7 +106,7 @@ products = [
 
 products.each do |product|
     hipster_prod = Product.create(product)
-    review = Review.create(rating: 3, user_id: 2, product_id: hipster_prod.id, content: "jnjnjnj")
+    review = Review.create(rating: 3, user_id: 2, product_id: hipster_prod.id, content: "So, like, natural and organic")
 end
 
 
