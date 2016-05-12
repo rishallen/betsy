@@ -9,12 +9,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="panel panel-default">
             <section class = "panel-body"><a href= "<%=product_path(product.id)%>" >
+            <li class = "panel-body"><a href= "<%=product_path(product.id)%>" >
+              <div><%= image_tag(product.photo_url, :size => "260x270") %></div>
                <caption>
-                 <div><%= image_tag(product.photo_url, :size => "240x250") %></div>
-               </caption>
               </img></a>
             </section>
             <div class="panel-heading"><%=product.name%></div>
+          </caption>
         </div>
       </div>
       <%end%>

@@ -86,6 +86,7 @@ class OrdersController < ApplicationController
         item.update(quantity: current_stock)
         Product.find_by(id: product_id).update(stock: 0)
       end
+      item.update(checkout_price: Product.find_by(id: product_id).price)
     end
     @order_placed = current_order
     order_info = create_order_params[:order]
@@ -104,6 +105,6 @@ class OrdersController < ApplicationController
 
   private
   def create_order_params
-    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration, :checkout_price]) #double check attributes
+    params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
   end
 end

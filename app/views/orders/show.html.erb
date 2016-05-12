@@ -5,8 +5,8 @@ Order placed on: <%=@order.updated_at%>
 
 <%@order_items.each do |item|%>
   <%= link_to "#{(Product.find_by(id: item.product_id)).name}", product_path(item.product_id) %> : <%=item.quantity%>
-  Unit price: <%=(Product.find_by(id: item.product_id)).price%>
-  Item price subtotal:<%=@item_price = ((Product.find_by(id: item.product_id)).price) * item.quantity%>
+  Unit price: <%=item.checkout_price%>
+  Item price subtotal:<%=@item_price = item.checkout_price * item.quantity%>
   <%@sum += @item_price%>
 <%end%>
 Order total:

@@ -10,21 +10,27 @@
 <%end%>
 Order total:
 $<%= @sum %>
-
+<br />
 <h2>Enter your order details below:</h2>
+CVV:
 <%= form_for @order, url: cart_checkout_path, html: {method: :patch} do |f| %>
-  Mailing and billing address:
-  <%= f.label :mailing_address %>
-    <%= f.text_field :mailing_address%>
 
-  Credit card number:
-  <%= f.label :cc_digits %>
-  <%= f.text_field :cc_digits%>
-  Expiration date:
-  <%= f.label :expiration %>
-  <%= f.date_select :expiration %>
+<%= f.label :cc_digits %>
+  <%= f.text_field :cc_digits, length: {is:16}%>
 
-  <% hidden_field_tag :status, "paid" %>
+<%= f.label :expiration %>
+  <%= f.date_select :expiration, required: true %>
+<br />
+CCV:
+<%= text_field "CVV", required: true %>
+Name:
+<%= text_field "Name", required: true %>
+<%= f.label :mailing_address %>
+    <%= f.text_field :mailing_address, required: true%>
+Billing zip code:
+<%= text_field "Zip", required: true %>
+
+
   <% if session[:user_id] %>
     <%=hidden_field_tag :user_id, session[:user_id] %>
   <%end%>
