@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'simplecov', '~> 0.11.2'
 
+gem 'traceroute'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
