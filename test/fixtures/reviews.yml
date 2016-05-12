@@ -1,12 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 #
 one:
+  id: 1
   rating: 5
   user_id: 1
   product_id: 2
   content: Reviewone
 
 two:
+  id: 2
   rating: 4
   user_id: 2
   product_id: 1

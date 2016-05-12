@@ -8,17 +8,17 @@ class ReviewTest < ActiveSupport::TestCase
   end
 
   test "does not save review without number rating" do
-    review = Review.new(content: "reviewstuff")
+    review = Review.new(content: "reviewstuff", product_id: 2, user_id: 2)
     assert_not review.save
   end
 
-  test "does not save review without content" do
-    review = Review.new(rating: 1)
+  test "does not save review without product id" do
+    review = Review.new(rating: 1, user_id: 2)
     assert_not review.save
   end
 
   test "saves review with number rating and content" do
-    review = Review.new(rating: 3, content: "review")
+    review = Review.new(rating: 3, content: "review", product_id: 2, user_id: 2)
     assert review.save
   end
 
