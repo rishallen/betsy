@@ -9,12 +9,35 @@ Product.destroy_all
 User.destroy_all
 Review.destroy_all
 
+users = [
+  {
+    username: "SmallBatchMoustache",
+    email: "smallbatchstache@hipsterly.com",
+    password: "xyz"
+  },
+
+  {
+    username: "BeardFabulous",
+    email: "beardfabulous@hipsterly.com",
+    password: "xyz"
+  },
+
+  {
+    username: "SingleOriginBeard",
+    email: "SingleOriginBeard@hipsterly.com",
+    password: "xyz"
+  }
+]
+
+users.each do |user|
+  User.create(user)
+end
 
 products = [
   {
     name: "Mustachifier",
     price: 9.99,
-    user_id: 1,
+    user_id: User.all.sample.id,
     stock: 20,
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
@@ -23,7 +46,7 @@ products = [
   {
     name: "Glitter Beard Kit",
     price: 99.99,
-    user_id: 2,
+    user_id: User.all.sample.id,
     stock: 10,
     description: "Celebrate every day with a festive Glitter Beard! So easy to do! AND you'll leave behind a little glitter everywhere you go!",
     category: "Personal Care",
@@ -32,7 +55,7 @@ products = [
   {
     name: "How-To-Guide to your Beard Bowl",
     price: 29.99,
-    user_id: 3,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
@@ -41,7 +64,7 @@ products = [
   {
     name: "STumP",
     price: 98.99,
-    user_id: 1,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "One-of-kind seating!",
     category: "Furniture",
@@ -50,7 +73,7 @@ products = [
   {
     name: "Crocheted Baby Beard",
     price: 98.99,
-    user_id: 2,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "One-of-kind warmth!",
     category: "Baby",
@@ -59,7 +82,7 @@ products = [
   {
     name: "Baby Mason Bottle",
     price: 28.99,
-    user_id: 3,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "One-of-kind drinking!",
     category: "Baby",
@@ -68,7 +91,7 @@ products = [
   {
     name: "Headphones All Ways",
     price: 98.99,
-    user_id: 1,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "Don't get caught with the wrong audioware!",
     category: "Miscellaneous",
@@ -77,7 +100,7 @@ products = [
   {
     name: "Longboard Stroller",
     price: 998.99,
-    user_id: 1,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "You're still cool even with a kid!",
     category: "Baby",
@@ -86,7 +109,7 @@ products = [
   {
     name: "Selfie Shirt",
     price: 98.99,
-    user_id: 2,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "One-of-kind shirt!",
     category: "Clothing",
@@ -95,7 +118,7 @@ products = [
   {
     name: "Subway Record Player",
     price: 898.99,
-    user_id: 3,
+    user_id: User.all.sample.id,
     stock: 15,
     description: "Make friends on the subway!",
     category: "Miscellaneous",
@@ -106,7 +129,7 @@ products = [
 
 products.each do |product|
     hipster_prod = Product.create(product)
-    review = Review.create(rating: 3, user_id: 2, product_id: hipster_prod.id, content: "So, like, natural and organic")
+    review = Review.create(rating: 3, user_id: User.all.sample.id, product_id: hipster_prod.id, content: "So, like, natural and organic")
 end
 
 
@@ -140,29 +163,4 @@ order_items = [
 
 order_items.each do |order_item|
     OrderItem.create(order_item)
-end
-
-
-users = [
-  {
-    username: "SmallBatchMoustache",
-    email: "smallbatchstache@hipsterly.com",
-    password: "xyz"
-  },
-
-  {
-    username: "BeardFabulous",
-    email: "beardfabulous@hipsterly.com",
-    password: "xyz"
-  },
-
-  {
-    username: "SingleOriginBeard",
-    email: "SingleOriginBeard@hipsterly.com",
-    password: "xyz"
-  }
-]
-
-users.each do |user|
-    User.create(user)
 end
