@@ -18,7 +18,7 @@
   <nav class="navbar navbar-default">
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "My Orders", user_orders_path(session[:user_id])  if current_user %></li>
+      <li><%= link_to "My Account", user_orders_path(session[:user_id])  if current_user %></li>
       <li><%= link_to "Log In", new_session_path unless current_user %></li>
       <li><%= link_to "Log Out", logout_path, method: :delete if current_user%></li>
       <li>

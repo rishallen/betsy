@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
     if session[:user_id]
       @user = User.find_by(id: session[:user_id])
+      @products = Product.where(user_id: session[:user_id])
       @order_items = OrderItem.where(product_id: @user.products)
       if !@order_items.empty?
         @order_items_paid = []

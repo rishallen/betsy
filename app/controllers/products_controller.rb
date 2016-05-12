@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: session[:user_id])
     # @category = Product.find(1).category
   end
 
