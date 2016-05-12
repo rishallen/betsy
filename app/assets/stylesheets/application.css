@@ -72,13 +72,13 @@ ul {
   border-radius: 10px;
 }
 
-.col-xs-4 {
+.col-xs-3 {
   background-color: rgb(100, 100, 100);
   color: #333;
   border-radius: 10px;
   padding: 1rem;
   height: 100rem;
-  width: 40rem;
+  /*width: 40rem;*/
   list-style: none;
   line-height: 5rem;
   color: black;
@@ -130,6 +130,17 @@ h6 {
 section.container.col-xs-8 {
   margin-top: 5rem;
   margin-bottom: 5rem;
+}
+
+.signup {
+  padding: 3rem;
+  display: inline-block;
+}
+
+.homelink {
+  display: inline-block;
+  padding: 1rem;
+  margin: 5rem;
 }
 
 /*img {
