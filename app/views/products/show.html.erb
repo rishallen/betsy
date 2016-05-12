@@ -1,5 +1,5 @@
 <h1>Product Details:</h1>
-<section class="container col-md-6 col-md-offset-1">
+<section class="container col-md-4 col-md-offset-2">
   <article class="span12">
     <div>
       <div class="panel panel-default">
@@ -40,27 +40,28 @@
     <%end%>
   </section>
 </section>
+<article>
+  <section class="container col-xs-8">
+    <h3><%= link_to "Leave a review for this product", new_product_review_path(@product.id)%></h3>
+    <h2>Reviews for <%= @product.name %></h2>
 
-<section class="container col-xs-9">
-  <h3><%= link_to "Leave a review for this product", new_product_review_path(@product.id)%></h3>
-  <h2>Reviews for <%= @product.name %></h2>
-
-   <% if @product.reviews.count > 0 %>
+     <% if @product.reviews.count > 0 %>
 
 
-     <% @product.reviews.each do |review| %>
-     <div class = "review">
-        <% if review.user_id %>
-          <%= User.find_by(id: review.user_id).username %> says:
-        <%end%>
-        <%= review.rating %><br />
-        "<%= review.content %>"
-      </div>
-      <% end %>
-      <%else%>
-      "Be the first to "<%= link_to "leave a review for this product", new_product_review_path(@product.id)%>"
-  <%end%>
+       <% @product.reviews.each do |review| %>
+       <div class = "review">
+          <% if review.user_id %>
+            <%= User.find_by(id: review.user_id).username %> says:
+          <%end%>
+          <%= review.rating %><br />
+          "<%= review.content %>"
+        </div>
+        <% end %>
+        <%else%>
+        "Be the first to "<%= link_to "leave a review for this product", new_product_review_path(@product.id)%>"
+    <%end%>
 </section>
+</article>
 
 
 
