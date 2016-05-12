@@ -35,14 +35,14 @@
     <% end %>
   </section>
 
-  <h3><%= link_to "View all products", products_path%></h3>
-  <h2>Browse products by</h2>
-  <h3>Category:</h3>
+  <h3 class=side-text-white><%= link_to "View all products", products_path%></h3>
+  <h2 class="side-text">Browse products by</h2>
+  <h3 class="side-text">Category:</h3>
   <section>
     <% @categories = Product.select('DISTINCT category').map(&:category)%>
     <% @categories.each do |category| %>
     <% if category %>
-      <li class=side-text><%= link_to category.upcase, by_category_products_path(category) %></li>
+      <li class=side-text-white><%= link_to category.upcase, by_category_products_path(category) %></li>
       <% end %>
     <% end %>
   </section>
@@ -58,15 +58,13 @@
 
 <%= yield %>
 
-<%# if @user.errors.empty? %>
   <% flash.each do |key, msg| %>
     <%= content_tag :div, msg, :id => key %>
   <% end %>
-<%# end %>
-<footer>
 
-  <h6>By the Lumbersexuals</h6>
-</footer>
+    <footer>
+      <h6>By the Lumbersexuals</h6>
+    </footer>
 
-</body>
+  </body>
 </html>

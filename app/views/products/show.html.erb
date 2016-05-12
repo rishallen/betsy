@@ -1,7 +1,7 @@
 <h1>Product Details:</h1>
-<section class="container col-xs-8">
+<section class="container col-md-6 col-md-offset-1">
   <article class="span12">
-    <div class="col-lg-5 col-md-5 col-sm-5">
+    <div>
       <div class="panel panel-default">
         <section class = "panel-body">
           <%= image_tag(@product.photo_url, class: "img-responsive img-center") %>
@@ -15,6 +15,30 @@
         <h2>Category: <%= @product.category.titleize %></h2>
     </div>
   </article>
+  <section>
+    <% if @product.stock == 0 %>
+      This item is out of stock.
+    <%else%>
+
+      <% if @order_item.nil? %>
+      <% #product is not in cart at all %>
+        <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
+
+      <% else %>
+      <% #product is already in cart, update quantity %>
+        Product already in cart. Update quantity:
+        <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
+          <%= label_tag :quantity, "Items in cart:" %>
+          <% array = (1..@product.stock).to_a %>
+          <%= select_tag(:quantity, options_for_select(array, @order_item.quantity)) %>
+          <%= hidden_field_tag :id, @order_item.id %>
+          <%= submit_tag "Update"%>
+          <%= link_to "Delete", delete_order_item_path(@order_item.id), method: :delete %>
+        <% end %>
+
+      <%end%>
+    <%end%>
+  </section>
 </section>
 
 <section class="container col-xs-9">
@@ -39,30 +63,7 @@
 </section>
 
 
-<section>
-  <% if @product.stock == 0 %>
-    This item is out of stock.
-  <%else%>
 
-    <% if @order_item.nil? %>
-    <% #product is not in cart at all %>
-      <%= button_to "Add to Cart", add_to_cart_path(product_id: @product.id), :method => :post %>
-
-    <% else %>
-    <% #product is already in cart, update quantity %>
-      Product already in cart. Update quantity:
-      <%= form_tag url_for(:controller => 'order_items', :action => 'update') do%>
-        <%= label_tag :quantity, "Items in cart:" %>
-        <% array = (1..@product.stock).to_a %>
-        <%= select_tag(:quantity, options_for_select(array, @order_item.quantity)) %>
-        <%= hidden_field_tag :id, @order_item.id %>
-        <%= submit_tag "Update"%>
-        <%= link_to "Delete", delete_order_item_path(@order_item.id), method: :delete %>
-      <% end %>
-
-    <%end%>
-  <%end%>
-</section>
 
 
 <section>

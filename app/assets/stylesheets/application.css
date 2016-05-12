@@ -26,6 +26,7 @@
    background-color: #444;
    color: #eee;
    height: 100%;
+   font-size: 18px;
  }
 
  .navbar .navbar-collapse {
@@ -104,10 +105,22 @@ footer {
  }
 
  a:hover, a:visited {
-  color:#000;
+  color:#ccc;
 }
 .side-text {
-  color: #ccc;
+  color: black;
+}
+
+h1, h1 {
+  font-size: 45px;
+}
+
+.col-lg-5 {
+  margin-left: auto;
+}
+
+.footer {
+  margin: 5rem;
 }
 
 /*img {
