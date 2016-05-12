@@ -1,18 +1,20 @@
 <h1>Product Details:</h1>
 <section class="container col-xs-8">
-  <div class="col-lg-5 col-md-5 col-sm-5">
-    <div class="panel panel-default">
-      <section class = "panel-body">
-        <%= image_tag(@product.photo_url) %>
-      </section>
-      <div class="panel-heading"><h2><%= @product.name %></h2></div>
+  <article class="span12">
+    <div class="col-lg-5 col-md-5 col-sm-5">
+      <div class="panel panel-default">
+        <section class = "panel-body">
+          <%= image_tag(@product.photo_url, class: "img-responsive img-center") %>
+        </section>
+        <div class="panel-heading"><h2><%= @product.name %></h2></div>
+      </div>
+        <h2>Price: $<%= @product.price %></h2>
+        <h2>Sold By: <%= User.find(@product.user_id).username %></h2>
+        <h2>In Stock: <%= @product.stock %></h2>
+        <h3><%= @product.description %></h3>
+        <h2>Category: <%= @product.category.titleize %></h2>
     </div>
-      <h2>Price: $<%= @product.price %></h2>
-      <h2>Sold By: <%= User.find(@product.user_id).username %></h2>
-      <h2>In Stock: <%= @product.stock %></h2>
-      <h3><%= @product.description %></h3>
-      <h2>Category: <%= @product.category.titleize %></h2>
-  </div>
+  </article>
 </section>
 
 <section class="container col-xs-9">

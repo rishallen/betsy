@@ -71,6 +71,18 @@ ul {
   border-radius: 10px;
 }
 
+.col-xs-4 {
+  background-color: rgb(100, 100, 100);
+  color: #333;
+  border-radius: 10px;
+  padding: 1rem;
+  height: 90rem;
+  width: 40rem;
+  list-style: none;
+  line-height: 5rem;
+  color: black;
+}
+
 .sidebar a {
   width: 90%;
   color: #eee;
@@ -79,6 +91,23 @@ ul {
 footer {
   bottom: auto;
   margin: 5rem 20rem;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ .img-center {
+   margin:0 auto;
+ }
+
+ a:hover, a:visited {
+  color:#000;
+}
+.side-text {
+  color: #ccc;
 }
 
 /*img {

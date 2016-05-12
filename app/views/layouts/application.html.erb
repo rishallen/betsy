@@ -28,7 +28,7 @@
     </ul>
   </nav>
 
-<aside class = "sidebar">
+<aside class="col-xs-4">
   <section>
     <% if current_user %>
     <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
@@ -36,13 +36,13 @@
   </section>
 
   <h3><%= link_to "View all products", products_path%></h3>
-  <h3>Browse products by</h3>
-  <h4>Category:</h4>
+  <h2>Browse products by</h2>
+  <h3>Category:</h3>
   <section>
     <% @categories = Product.select('DISTINCT category').map(&:category)%>
     <% @categories.each do |category| %>
     <% if category %>
-      <li><%= link_to category.upcase, by_category_products_path(category) %></li>
+      <li class=side-text><%= link_to category.upcase, by_category_products_path(category) %></li>
       <% end %>
     <% end %>
   </section>
