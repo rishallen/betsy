@@ -12,9 +12,9 @@
 </head>
 <body>
 
-  <h1>Hipsterly</h1>
+  <%= image_tag "hipsterly_logo_plain.png" %>
 
-  <%= "Hi #{username}" %>
+  <p><%= "Hi #{username}" %></p>
   <nav class="navbar navbar-default">
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
@@ -28,21 +28,21 @@
     </ul>
   </nav>
 
-<aside class = "sidebar">
+<aside class="col-xs-4">
   <section>
     <% if current_user %>
     <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
     <% end %>
   </section>
 
-  <h3><%= link_to "View all products", products_path%></h3>
-  <h3>Browse products by</h3>
-  <h4>Category:</h4>
+  <h3 class=side-text-white><%= link_to "View all products", products_path%></h3>
+  <h2 class="side-text">Browse products by</h2>
+  <h3 class="side-text">Category:</h3>
   <section>
     <% @categories = Product.select('DISTINCT category').map(&:category)%>
     <% @categories.each do |category| %>
     <% if category %>
-      <li><%= link_to category.upcase, by_category_products_path(category) %></li>
+      <li class=side-text-white><%= link_to category.upcase, by_category_products_path(category) %></li>
       <% end %>
     <% end %>
   </section>
@@ -58,15 +58,13 @@
 
 <%= yield %>
 
-<%# if @user.errors.empty? %>
   <% flash.each do |key, msg| %>
     <%= content_tag :div, msg, :id => key %>
   <% end %>
-<%# end %>
-<footer>
 
-  <h6>By the Lumbersexuals</h6>
-</footer>
+    <footer>
+      <h6>By the Lumbersexuals</h6>
+    </footer>
 
-</body>
+  </body>
 </html>
