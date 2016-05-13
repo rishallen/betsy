@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     #   @current_order = Order.create(status: "pending") #user_id: user_id)
     #   session[:order_id] = @current_order.id
     end
-    @current_order ||= Order.find_or_create_by(id: session[:order_id])
+    @current_order = Order.find_or_create_by(id: session[:order_id])
 
   end
   # @current_order

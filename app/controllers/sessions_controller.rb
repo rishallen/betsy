@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      session[:order_id] = Order.where(user_id: user.id).length == 0 ? Order.create(user_id: session[:user_id]) : Order.where(user_id: user.id).last.id
+      session[:order_id] = Order.where(user_id: user.id).length == 0 ? Order.create(user_id: session[:user_id], status: "pending") : Order.where(user_id: user.id).last.id
       redirect_to root_path
     else
       flash[:wrong_sign_in] = "Wrong Email or Password"
