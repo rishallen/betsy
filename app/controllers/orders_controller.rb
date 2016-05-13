@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
-
     if session[:user_id]
       @user = User.find_by(id: session[:user_id])
       @products = Product.where(user_id: session[:user_id])
@@ -43,18 +42,6 @@ class OrdersController < ApplicationController
       render :new
     end
   end
-
-  # def edit #Editing orders should only be "PENDING" orders, should be in cart
-  #   @order = current_order
-  #   @order_items = @order.order_items
-  #     render user_cart_path
-  # end
-  #
-  # def update
-  #   @order = current_order
-  #   @order_items = @order.order_items.update(params[:order_items]) #fix this, I don't know what I'm doing
-  #   render user_cart_path
-  # end
 
   def cart
     @order_items = current_order.order_items
@@ -102,6 +89,13 @@ class OrdersController < ApplicationController
       session[:order_id] = @order.id
     end
     render :order_review
+  end
+
+  def update
+    #pass in an order_id
+    order = Order.find(params[:id])
+    order.update(status: "complete")
+    redirect_to user_orders_path
   end
 
   private

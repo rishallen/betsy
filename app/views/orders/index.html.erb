@@ -1,5 +1,5 @@
 
-<section class="container col-xs-9">
+<section class="container col-xs-9 dark-text">
 
   <div class="panel panel-default">
     <div class="panel-heading">Edit your products:</div>
@@ -10,14 +10,15 @@
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-heading">Orders waiting to be shipped</div>
+    <div class="panel-heading">View Your Orders</div>
 
     <%@paid_sum = 0%>
     <%@complete_sum = 0%>
 
+
+
     <% if @order_items_paid %>
-
-
+    <h3>Orders waiting to be shipped:</h3>
     <table class="table table-striped">
       <thead>
       <tr>
@@ -41,28 +42,50 @@
             <td><%= User.find_by(id: item.order.user_id).nil? ? "Guest" : "#{User.find_by(id: item.order.user_id).username}" %></td>
             <td>$<%= item.checkout_price %></td>
             <td>$<%= item.checkout_price * item.quantity%></td>
-            <td><%= item.order.status%></td>
+            <td><%= link_to "Mark as shipped", user_order_path(id: item.order_id), method: :patch%></td>
             <% @paid_sum += item.checkout_price * item.quantity%><br>
           </tr>
         <%end%>
-      <tbody>
+      </tbody>
     </table>
-        Status "paid" total: $<%=@paid_sum%>
+        <p class="result">Status "paid" total: $<%=@paid_sum%></p>
     <%end%>
 
     <% if @order_items_complete %>
-      <strong>Complete orders:</strong>
-      <%@order_items_complete.each do |item| %>
-        <div class = "complete orders"
-        <%= link_to Product.find(item.product_id).name, product_path(item.product_id)%>: <%= User.find_by(id: item.order.user_id).username%>
-        <% @complete_sum += (item.checkout_price * item.quantity)%><div class = "price">
-        Unit price: $<%= item.checkout_price %>
-        Subtotal: $<%= item.checkout_price * item.quantity%></div>
-        <%= item.order.updated_at %> <%= item.order.status%>
-      </div>
-      <%end%>
-    Status "complete" total: $<%=@complete_sum%>
+      <h3>Orders completed:</h3>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Order Id</th>
+          <th>Date</th>
+          <th>Quantity</th>
+          <th>Product</th>
+          <th>Username</th>
+          <th>Unit Price</th>
+          <th>Subtotal</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+          <%@order_items_complete.each do |item| %>
+            <tr>
+              <td><%= link_to item.order_id, order_path(item.order_id) %></td>
+              <td><%= item.order.updated_at %></td>
+              <td><%= item.quantity %></td>
+              <td><%= link_to Product.find(item.product_id).name, product_path(item.product_id)%></td>
+              <td><%= User.find_by(id: item.order.user_id).nil? ? "Guest" : "#{User.find_by(id: item.order.user_id).username}" %></td>
+              <td>$<%= item.checkout_price %></td>
+              <td>$<%= item.checkout_price * item.quantity%></td>
+              <td><%= item.order.status%></td>
+              <% @complete_sum += item.checkout_price * item.quantity%><br>
+            </tr>
+          <%end%>
+      </tbody>
+    </table>
+    <p class="result">Status "complete" total: $<%=@complete_sum%></p>
     <%end%>
-    Total revenue: $<%= @complete_sum + @paid_sum%>
+    <p class="total">Total revenue: $<%= @complete_sum + @paid_sum%></p>
   </div>
 </section>
