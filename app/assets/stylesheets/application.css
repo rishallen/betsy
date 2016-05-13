@@ -150,6 +150,14 @@ p {
 .new-product {
   margin: 10rem;
 }
+
+aside button {
+  margin: 3px;
+}
+
+button, input, optgroup, select, textarea {
+  color: #444;
+}
 /*img {
   width: 33%;
   float: left;

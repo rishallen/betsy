@@ -3,16 +3,16 @@
 
 <%= form_for [@user, @product] do |f| %>
   <p><%= f.label :name %>
-  <%= f.text_field :name %></p>
+  <%= f.text_field :name, required: true  %></p>
 
   <p><%= f.label :price %>
-  <%= f.text_field :price %></p>
+  <%= f.text_field :price, required: true  %></p>
 
   <p><%= f.label :stock %>
-  <%= f.text_field :stock %></p>
+  <%= f.text_field :stock, required: true  %></p>
 
   <p><%= f.label :description %>
-  <%= f.text_area :description %></p>
+  <%= f.text_area :description, required: true  %></p>
 
   <p><%= f.label :category %>
   <%= f.text_area :category, required: true %></p>

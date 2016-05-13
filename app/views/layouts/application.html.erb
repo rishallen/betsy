@@ -49,7 +49,7 @@
       <li><%= link_to seller.username, user_products_path(seller.id) %></li>
     <% end %>
   </section>
-  <section class="new-product">
+  <section class="col-sm-4">
     <% if current_user %>
     <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
     <% end %>
