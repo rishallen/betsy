@@ -9,12 +9,13 @@
       <div class="col-lg-4 col-md-4 col-sm-4">
         <div class="panel panel-default">
             <section class = "panel-body"><a href= "<%=product_path(product.id)%>" >
-            <li class = "panel-body"><a href= "<%=product_path(product.id)%>" >
-              <%= image_tag(product.photo_url, :crop => :fill, class: "img-responsive", style: "padding-left: 0px;  padding-right: 0px;") %>
-               <caption>
-            </section>
-            <div class="panel-heading"><%=product.name%></div>
-          </caption>
+            <a href= "<%=product_path(product.id)%>" >
+              <%= image_tag(product.photo_url, :crop => :fill, class: "img-responsive") %>
+              <caption>
+                </section>
+                <div class="panel-heading"><%=product.name%></div>
+              </caption>
+          </a>
         </div>
       </div>
       <%end%>
@@ -24,6 +25,6 @@
 
 <section>
   <% if current_user %>
-  <li class=""><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
+  <%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %>
   <% end %>
 </section>

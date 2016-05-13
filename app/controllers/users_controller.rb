@@ -9,7 +9,10 @@ class UsersController < ApplicationController
       flash[:success] = "Success!!!"
 
       session[:user_id] = @user.id
-      
+      cart = Order.new
+      cart.user_id = @user.id
+      cart.save
+
       redirect_to root_path
     else
       render :new

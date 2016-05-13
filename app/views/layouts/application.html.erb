@@ -29,11 +29,6 @@
   </nav>
 
 <aside class="col-xs-3">
-  <section>
-    <% if current_user %>
-    <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
-    <% end %>
-  </section>
 
   <h3 class=side-text-white><%= link_to "View all products", products_path%></h3>
   <h2 class="side-text">Browse products by</h2>
@@ -52,6 +47,11 @@
     <% @sellers = User.all.select { |user| user.products.count > 0 } %>
     <% @sellers.each do |seller| %>
       <li><%= link_to seller.username, user_products_path(seller.id) %></li>
+    <% end %>
+  </section>
+  <section class="new-product">
+    <% if current_user %>
+    <li><%= button_to "Add a new product!", new_user_product_path(current_user.id), :method => :get %></li>
     <% end %>
   </section>
 </aside>
