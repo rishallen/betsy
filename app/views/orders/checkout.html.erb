@@ -15,24 +15,28 @@ $<%= @sum %>
 CVV:
 <%= form_for @order, url: cart_checkout_path, html: {method: :patch} do |f| %>
 
-<%= f.label :cc_digits %>
-  <%= f.text_field :cc_digits, length: {is:16}%>
+  <p><%= f.label :cc_digits %>
+  <%= f.text_field :cc_digits, length: {is:16}%></p>
 
-<%= f.label :expiration %>
-  <%= f.date_select :expiration, required: true %>
-<br />
-CCV:
-<%= text_field "CVV", required: true %>
-Name:
-<%= text_field "Name", required: true %>
-<%= f.label :mailing_address %>
-    <%= f.text_field :mailing_address, required: true%>
-Billing zip code:
-<%= text_field "Zip", required: true %>
+  <p><%= f.label :expiration %>
+  <%= f.date_select :expiration, required: true %></p>
 
+  CCV:
+  <%= text_field "CVV", required: true %>
 
-  <% if session[:user_id] %>
-    <%=hidden_field_tag :user_id, session[:user_id] %>
-  <%end%>
-  <%= f.submit "Place Order"%>
+  <p>Name:
+  <%= text_field "Name", required: true %></p>
+
+  <p><%= f.label :mailing_address %>
+  <%= f.text_field :mailing_address, required: true%></p>
+
+  Billing zip code:
+  <%= text_field "Zip", required: true %>
+
+  <p>
+    <% if session[:user_id] %>
+      <%= hidden_field_tag :user_id, session[:user_id] %>
+    <%end%>
+    <%= f.submit "Place Order"%>
+  </p>
 <%end%>

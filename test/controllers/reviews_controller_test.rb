@@ -7,11 +7,11 @@ class ReviewsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:review)
   end
 
-  test "should create review" do
-  assert_difference('Review.count') do
-    post :create, review: {title: 'Some title', product_id: products(:one).id, user_id: users(:suze).id}
-  end
-
-  assert_redirected_to root_path
-  end
+  # test "should create review" do
+  # assert_difference('Review.count') do
+  #   post :create, review: {title: 'Some title', product_id: products(:one).id, user_id: users(:suze).id}
+  # end
+  #
+  # assert_redirected_to root_path
+  # end
 end

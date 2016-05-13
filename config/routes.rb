@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :users, :only => [:new, :create] do
-    resources :orders, except: [:update, :edit]
+    resources :orders, except: [:edit]
     resources :reviews, :only => [:new, :create]
     resources :products, except: [:destroy]
   end
@@ -32,4 +32,5 @@ Rails.application.routes.draw do
   post '/cart' => 'order_items#update'
   delete '/cart/order_items/:id' => 'order_items#destroy', :as => 'delete_order_item'
   get 'orders/:id' => 'orders#show', :as => 'order'
+
 end
