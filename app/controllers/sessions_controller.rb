@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+
     user = User.log_in(params[:email], params[:password])
 
     if user

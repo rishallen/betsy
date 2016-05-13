@@ -1,9 +1,9 @@
 class OrderItemsController < ApplicationController
 
-  def edit #Editing orders should only be "PENDING" orders, should be in cart
-    @order_item = current_order.order_items.find(params[:id])
-      render cart_path
-  end
+  # def edit #Editing orders should only be "PENDING" orders, should be in cart
+  #   @order_item = current_order.order_items.find(params[:id])
+  #     render cart_path
+  # end
 
   def update
 
