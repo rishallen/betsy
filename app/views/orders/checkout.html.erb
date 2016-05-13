@@ -33,9 +33,10 @@ CVV:
   Billing zip code:
   <%= text_field "Zip", required: true %>
 
-
-  <% if session[:user_id] %>
-    <%= hidden_field_tag :user_id, session[:user_id] %>
-  <%end%>
-  <%= f.submit "Place Order"%>
+  <p>
+    <% if session[:user_id] %>
+      <%= hidden_field_tag :user_id, session[:user_id] %>
+    <%end%>
+    <%= f.submit "Place Order"%>
+  </p>
 <%end%>
