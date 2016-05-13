@@ -150,6 +150,10 @@ p {
 .new-product {
   margin: 10rem;
 }
+
+aside button {
+  margin: 3px;
+}
 /*img {
   width: 33%;
   float: left;
