@@ -12,17 +12,17 @@
 <% end %>
 
 <%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+  <p><%= f.label :username %>
+  <%= f.text_field :username %></p>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <p><%= f.label :email %>
+  <%= f.text_field :email %></p>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <p><%= f.label :password %>
+  <%= f.password_field :password %></p>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <p><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></p>
 
   <%= f.submit %>
 <% end %>

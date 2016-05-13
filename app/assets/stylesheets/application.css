@@ -143,6 +143,13 @@ section.container.col-xs-8 {
   margin: 5rem;
 }
 
+p {
+  margin: 5rem;
+}
+
+.new-product {
+  margin: 10rem;
+}
 /*img {
   width: 33%;
   float: left;
