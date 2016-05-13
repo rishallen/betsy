@@ -5,11 +5,10 @@
   <%product = Product.find(item.product_id)%>
   <%= product.name %> : $<%= product.price%>
   <a href= "<%=product_path(product.id)%>" class = "product-image">
-    <img src="<%=product.photo_url%>">
+    <%=image_tag product.photo_url %>
    <caption>
      <%=product.name%>
    </caption>
- </img></a>
 
   <%sum += (product.price)*(item.quantity)%>
 
