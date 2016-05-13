@@ -154,3 +154,19 @@ p {
   width: 33%;
   float: left;
 }*/
+
+.dark-text {
+  color: black;
+}
+
+.result {
+  font-weight: bold;
+  text-align: right;
+  text-decoration: overline;
+}
+
+.total {
+  font-weight: bolder;
+  text-align: center;
+  text-decoration:underline;
+}
