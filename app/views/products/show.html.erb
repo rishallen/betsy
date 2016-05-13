@@ -60,15 +60,10 @@
         <%else%>
         "Be the first to "<%= link_to "leave a review for this product", new_product_review_path(@product.id)%>"
     <%end%>
+    <section>
+      <% if session[:user_id] == @product.user_id %>
+      <%= button_to "Edit a product", edit_user_product_path(current_user.id, @product.id), :method => :get %>
+      <% end %>
+    </section>
 </section>
 </article>
-
-
-
-
-
-<section>
-  <% if session[:user_id] == @product.user_id %>
-    <li><%= button_to "Edit a product", edit_user_product_path(current_user.id, @product.id), :method => :get %></li>
-  <% end %>
-</section>
