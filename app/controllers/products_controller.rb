@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.permit(product: [:name, :description, :category, :status, :price, :picture_url, :stock, :user_id])
+    params.permit(product: [:name, :description, :category, :status, :price, :photo_url, :stock, :user_id])
   end
 
 end

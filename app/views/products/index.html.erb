@@ -10,7 +10,7 @@
         <div class="panel panel-default">
             <section class = "panel-body"><a href= "<%=product_path(product.id)%>" >
             <a href= "<%=product_path(product.id)%>" >
-              <%= image_tag(product.photo_url, :crop => :fill, class: "img-responsive") %>
+              <%= image_tag("#{product.photo_url}", :crop => :fill, class: "img-responsive") %>
               <caption>
                 </section>
                 <div class="panel-heading"><%=product.name%></div>
