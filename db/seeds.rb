@@ -13,19 +13,30 @@ users = [
   {
     username: "SmallBatchMoustache",
     email: "smallbatchstache@hipsterly.com",
-    password: "xyz"
+    password: "xyz",
+    country: "US",
+    state: "NY",
+    city: "New York City",
+    zip: 10019
   },
-
   {
     username: "BeardFabulous",
     email: "beardfabulous@hipsterly.com",
-    password: "xyz"
+    password: "xyz",
+    country: "US",
+    state: "CA",
+    city: "Beverly Hills",
+    zip: 90210
   },
 
   {
     username: "SingleOriginBeard",
     email: "SingleOriginBeard@hipsterly.com",
-    password: "xyz"
+    password: "xyz",
+    country: "US",
+    state: "CA",
+    city: "Oakland",
+    zip: 94621
   }
 ]
 
@@ -41,7 +52,8 @@ products = [
     stock: 20,
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
-    photo_url: 'ryan.jpg'
+    photo_url: 'ryan.jpg',
+    weight: 10
   },
   {
     name: "Glitter Beard Kit",
@@ -50,7 +62,9 @@ products = [
     stock: 10,
     description: "Celebrate every day with a festive Glitter Beard! So easy to do! AND you'll leave behind a little glitter everywhere you go!",
     category: "Personal Care",
-    photo_url: 'Glitter_Beard.jpg'
+    photo_url: 'Glitter_Beard.jpg',
+    weight: 20
+
   },
   {
     name: "How-To-Guide to your Beard Bowl",
@@ -59,7 +73,9 @@ products = [
     stock: 15,
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
-    photo_url: 'Beard_Bowl.jpg'
+    photo_url: 'Beard_Bowl.jpg',
+    weight: 30
+
   },
   {
     name: "STumP",
@@ -68,7 +84,9 @@ products = [
     stock: 15,
     description: "One-of-kind seating!",
     category: "Furniture",
-    photo_url: 'stump.jpg'
+    photo_url: 'stump.jpg',
+    weight: 10
+
   },
   {
     name: "Crocheted Baby Beard",
@@ -77,7 +95,9 @@ products = [
     stock: 15,
     description: "One-of-kind warmth!",
     category: "Baby",
-    photo_url: 'Baby_beard.jpg'
+    photo_url: 'Baby_beard.jpg',
+    weight: 2.5
+
   },
   {
     name: "Baby Mason Bottle",
@@ -86,7 +106,9 @@ products = [
     stock: 15,
     description: "One-of-kind drinking!",
     category: "Baby",
-    photo_url: 'baby_mason_bottle.jpg'
+    photo_url: 'baby_mason_bottle.jpg',
+    weight: 1.8
+
   },
   {
     name: "Headphones All Ways",
@@ -95,7 +117,9 @@ products = [
     stock: 15,
     description: "Don't get caught with the wrong audioware!",
     category: "Miscellaneous",
-    photo_url: 'Headers.jpg'
+    photo_url: 'Headers.jpg',
+    weight: 2
+
   },
   {
     name: "Longboard Stroller",
@@ -104,7 +128,9 @@ products = [
     stock: 15,
     description: "You're still cool even with a kid!",
     category: "Baby",
-    photo_url: 'Longboard_stroller.jpg'
+    photo_url: 'Longboard_stroller.jpg',
+    weight: 20
+
   },
   {
     name: "Selfie Shirt",
@@ -113,7 +139,9 @@ products = [
     stock: 15,
     description: "One-of-kind shirt!",
     category: "Clothing",
-    photo_url: 'SelfieShirt.jpg'
+    photo_url: 'SelfieShirt.jpg',
+    weight: 5
+
   },
   {
     name: "Subway Record Player",
@@ -122,7 +150,8 @@ products = [
     stock: 15,
     description: "Make friends on the subway!",
     category: "Miscellaneous",
-    photo_url: 'Subway_record_player.jpg'
+    photo_url: 'Subway_record_player.jpg',
+    weight: 13
   },
 ]
 

@@ -14,7 +14,7 @@
  *= require_self
  */
  html {
-   background-color: #444;
+   background-color: rgba(222, 217, 217, 0.28);
    align: center;
    text-align: center;
    height: 100%;
@@ -23,8 +23,8 @@
 
  body {
    width: 100%;
-   background-color: #444;
-   color: #eee;
+   background-color:  rgba(222, 217, 217, 0.28);
+   color: black;
    height: 100%;
    font-size: 18px;
  }
