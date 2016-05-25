@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = current_order
+    raise
     render :checkout
   end
 

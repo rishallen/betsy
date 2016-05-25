@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates :user_id, presence: true
   validates :stock, presence: true
+  validates :weight, presence: true
 
   has_many :reviews
   belongs_to :user
