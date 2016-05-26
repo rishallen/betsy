@@ -30,6 +30,9 @@ gem 'active_shipping'
 
 gem 'traceroute'
 
+gem 'httparty'
+
+gem 'pg', '~> 0.15'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -56,5 +59,5 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg', '~> 0.15'
+
 end

@@ -23,7 +23,8 @@ Rails.application.routes.draw do
 
   get '/cart/checkout' => 'orders#checkout'
   patch '/cart/checkout' => 'orders#order_placed' #does patch need to point to checkout page? Or to the destination?
-  get '/cart/checkout/review_order/:id' => 'order#review'
+  get '/cart/checkout/review_order/:id' => 'orders#review'
+  post '/cart/checkout/order' => 'orders#get_rates', as: :get_rates
 
   resources :sessions, :only => [:new, :create]
   delete "/logout" => "sessions#destroy"

@@ -7,7 +7,6 @@
   Unit price: <%=Product.find_by(id: item.product_id).price%>
   Item price subtotal:<%=@item_price = (Product.find_by(id: item.product_id).price) * item.quantity%>
   <%(@sum += @item_price) if @item_price>0%>
-  <%= raise %>
 
   <br />
 <%end%>
@@ -25,6 +24,8 @@ $<%= @sum %>
 
                 <h2>Shipping Information</h2>
 
+                <%= form_for @order, url: get_rates_path do |f| %>
+
                 <!-- address-line1 input-->
                 <div class="control-group">
                     <label class="control-label">Address Line 1</label>
@@ -41,6 +42,15 @@ $<%= @sum %>
                         <input id="address-line2" name="address-line2" type="text" placeholder="address line 2"
                         class="input-xlarge">
                         <p class="help-block">Apartment, suite , unit, building, floor, etc.</p>
+                    </div>
+                </div>
+                <!-- country-->
+                <div class="control-group">
+                    <label class="control-label"> Country </label>
+                    <div class="controls">
+                        <input id="country" name="country" type="text" placeholder="country"
+                        class="input-xlarge">
+                        <p class="help-block"></p>
                     </div>
                 </div>
                 <!-- city input-->
@@ -71,7 +81,7 @@ $<%= @sum %>
                 </div>
                 <!-- submit-tag input-->
                 <input type="submit" value="Get Rate" class"btn btn-success">
-
+                <% end %>
             </fieldset>
         </form>
 	</div>

@@ -1,3 +1,5 @@
+require_relative '../../lib/shipping_wrapper.rb'
+
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
@@ -49,19 +51,47 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = current_order
-    raise
     render :checkout
   end
 
   def add_to_cart
-      current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
-    #  binding.pry
+    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
     redirect_to cart_path
   end
 
   def destroy # A "clear cart" function?
     @order = current_order.order_items.destroy
 
+  end
+
+  def get_rates
+    # this is going to filter out information
+    # this method will be the one that talks to the api
+    order = Order.find_by_id(params[:id])
+    destination = (destination_params[:destination])
+
+    user = User.find_by_user(order.user_id)
+    origins = {
+      country: user.country,
+      state: user.state,
+      city: user.city,
+      zip: user.zip,
+      weight: order.weight
+      item_id: order.item_id
+      quantity: order_items.quantity
+    }
+
+    # calls the shippingwrapper
+    # get rates knows about params because we passed it in
+    @rates = ShippingWrapper.get_rates(order, destination, origins)
+    redirect_to cart_checkout_path
+  end
+
+  def get_rates_response
+    @return_rates = params([:id])
+    @user = current_user.uid
+      rates = ShippingWrapper.response_rates(@user, @return_rates)
+      redirect_to root_path
   end
 
   def order_placed #call when "confirm order/pay" button is used, params should include status update
@@ -102,5 +132,9 @@ class OrdersController < ApplicationController
   private
   def create_order_params
     params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
+  end
+
+  def destination_params
+    params.permit(destination: [:address_line1, :address_line2, :city, :state, :country, :zip ])
   end
 end
