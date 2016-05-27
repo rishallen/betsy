@@ -2,35 +2,31 @@ require 'httparty'
 # module
 module ShippingWrapper
   # this is our api
-  BASE_URL = "boiling-caverns-39725.herokuapp.com"
+  # BASE_URL = "boiling-caverns-39725.herokuapp.com"
+  BASE_URL = "http://localhost:3001"
 
   def self.get_rates(order, destination, origins)
-    response = HTTParty.post(BASE_URL + "/shipping_rates", [{
-       :body =>
-        "destination": {
-          country: destination[:destination][:country],
-          state: destination[:destination][:state],
-          city: destination[:destination][:city],
-          zip: destination[:destination][:zip]
-        },
-
-        "origins": {
-          country: origins[:country],
-          state: origins[:state],
-          city: origins[:city],
-          zip: origins[:zip],
-          quantity: origins[:quantity],
-          weight: origins[:weight]
-          item_id: origins[:item]
-      },
-
-      "order": {
-        order_id: order[:][:item_id]
-      } }.to_json,
-
-      :headers => {
-        'Content-Type' => 'application/json', 'Accept' => 'application/json'
-      }])
+    binding.pry
+    # response = HTTParty.post(BASE_URL + "/shipping_rates",
+    #    :body =>
+    #     :destination =>
+    #     :origins => [{
+    #       country: origins[:country],
+    #       state: origins[:state],
+    #       city: origins[:city],
+    #       zip: origins[:zip],
+    #       quantity: origins[:quantity],
+    #       weight: origins[:weight]
+    #       item_id: origins[:item]
+    #   }],
+    #
+    #   "order" => {
+    #     order_id: order.id
+    #   }.to_json,
+    #
+    #   :headers => {
+    #     'Content-Type' => 'application/json', 'Accept' => 'application/json'
+    #   })
   end
 
   def self.response_rates

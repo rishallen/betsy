@@ -5,11 +5,11 @@ class Order < ActiveRecord::Base
   has_many :products, through: :order_items
   belongs_to :user
 
-  has_many :destinations
+  # has_many :destinations
 
 
-  validates :destination, presence: :true
-  validates :origins, presence: :true
+  # validates :destination, presence: :true
+  # validates :origins, presence: :true
     # this is going to filter out information: what is on the form: which is the product destination.
     # that will then be sent to the wrapper
     # destination, origin, weight, order_id

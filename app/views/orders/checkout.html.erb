@@ -18,13 +18,13 @@ $<%= @sum %>
 
 <div class="container">
 	<div class="row">
-		 <form class="form-horizontal">
+    <%= form_for @order, url: get_rates_path, html: {method: :post, class: 'form-horizontal'} do |f| %>
+
             <fieldset>
                 <!-- Address form -->
 
                 <h2>Shipping Information</h2>
 
-                <%= form_for @order, url: get_rates_path do |f| %>
 
                 <!-- address-line1 input-->
                 <div class="control-group">
@@ -48,7 +48,7 @@ $<%= @sum %>
                 <div class="control-group">
                     <label class="control-label"> Country </label>
                     <div class="controls">
-                        <input id="country" name="country" type="text" placeholder="country"
+                        <input id="country" name="destination[country]" type="text" placeholder="country"
                         class="input-xlarge">
                         <p class="help-block"></p>
                     </div>
@@ -57,7 +57,7 @@ $<%= @sum %>
                 <div class="control-group">
                     <label class="control-label">City / Town</label>
                     <div class="controls">
-                        <input id="city" name="city" type="text" placeholder="city" class="input-xlarge">
+                        <input id="city" name="destination[city]" type="text" placeholder="city" class="input-xlarge">
                         <p class="help-block"></p>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ $<%= @sum %>
                 <div class="control-group">
                     <label class="control-label">State / Province / Region</label>
                     <div class="controls">
-                        <input id="region" name="region" type="text" placeholder="state / province / region"
+                        <input id="region" name="destination[region]" type="text" placeholder="state / province / region"
                         class="input-xlarge">
                         <p class="help-block"></p>
                     </div>
@@ -74,16 +74,17 @@ $<%= @sum %>
                 <div class="control-group">
                     <label class="control-label">Zip / Postal Code</label>
                     <div class="controls">
-                        <input id="postal-code" name="postal-code" type="text" placeholder="zip or postal code"
+                        <input id="postal-code" name="destination[postal-code]" type="text" placeholder="zip or postal code"
                         class="input-xlarge">
                         <p class="help-block"></p>
                     </div>
                 </div>
+                <%= f.hidden_field :order_id, value: @order.id %>
                 <!-- submit-tag input-->
                 <input type="submit" value="Get Rate" class"btn btn-success">
-                <% end %>
+
             </fieldset>
-        </form>
+              <% end %>
 	</div>
 </div>
 

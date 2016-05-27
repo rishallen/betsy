@@ -1,4 +1,5 @@
 require_relative '../../lib/shipping_wrapper.rb'
+require 'pry'
 
 class OrdersController < ApplicationController
   def index
@@ -65,21 +66,51 @@ class OrdersController < ApplicationController
   end
 
   def get_rates
+    # orders is going to be a collection of order items
+
+    ## for each order there will be a collection of order items
+    ## loop through the order item and save the NEEDED INFO as a collection of an array
+      ##INFO NEEDED
+      ## order item contains a product_id where you can retrive the product WEIGHT
+      ## find each user for the product and get the MERCHANT ADDRESS
+      ## QUANTITY will come from order_item
+
+    ## API will get origins = [{ weigth: "weight", quantity: "blah", country: "blah", city: "blah", state: "blah", zip: "blah"}, { weigth: "weight", quantity: "blah", country: "blah", city: "blah", state: "blah", zip: "blah"}]
+
+    ### Already have the below info
+    ## API will get destination = { country: "blah", city: "blah", state: "blah", zip: "blah"}
+    ## API will get order = {order: order_id}
+    # holds the collection of origin, destination, and weight
+    order_route_array =[]
+
+
     # this is going to filter out information
     # this method will be the one that talks to the api
-    order = Order.find_by_id(params[:id])
-    destination = (destination_params[:destination])
+    order = Order.find(rates_params[:order][:order_id])
+    destination = (rates_params[:destination])
 
-    user = User.find_by_user(order.user_id)
-    origins = {
-      country: user.country,
-      state: user.state,
-      city: user.city,
-      zip: user.zip,
-      weight: order.weight
-      item_id: order.item_id
-      quantity: order_items.quantity
-    }
+
+    order.order_items.group_by(&:user).each do |user, order_items|
+      weights = []
+      order_items.each do |item|
+        weights << item.product.weight * item.quantity
+      end
+      total_weight = weights.inject(:+)
+    # order.order_items.each do |item|
+    #   user = item.product.user
+      origins = {
+        country: user.country,
+        state: user.state,
+        city: user.city,
+        zip: user.zip,
+      }
+
+      order_route_array << { :origins => origins, :destination => destination, :package => total_weight}
+    end
+
+    ## after finding the us
+
+
 
     # calls the shippingwrapper
     # get rates knows about params because we passed it in
@@ -134,7 +165,7 @@ class OrdersController < ApplicationController
     params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
   end
 
-  def destination_params
-    params.permit(destination: [:address_line1, :address_line2, :city, :state, :country, :zip ])
+  def rates_params
+    params.permit(destination: [ :city, :state, :country, :"postal-code"], order: :order_id)
   end
 end

@@ -6,7 +6,6 @@ class OrderItemsController < ApplicationController
   # end
 
   def update
-
     @order_item = current_order.order_items.where(id: params[:id]).first
     ### OR OrderItems.find(id) ????
     @order_item.update(quantity: params[:quantity])
