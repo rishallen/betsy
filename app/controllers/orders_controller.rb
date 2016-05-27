@@ -117,7 +117,7 @@ end
     # get rates knows about params because we passed it in
 
     @rates = ShippingWrapper.get_rates(order, destination, order_route_array)
-  
+
     redirect_to cart_checkout_path
   end
 
@@ -169,6 +169,6 @@ end
   end
 
   def rates_params
-    params.permit(destination: [ :city, :state, :country, :"postal-code"], order: :order_id)
+    params.permit(destination: [ :city, :state, :country, :"zip"], order: :order_id)
   end
 end
