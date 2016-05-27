@@ -5,28 +5,16 @@ module ShippingWrapper
   # BASE_URL = "boiling-caverns-39725.herokuapp.com"
   BASE_URL = "http://localhost:3001"
 
-  def self.get_rates(order, destination, origins)
-    binding.pry
-    # response = HTTParty.post(BASE_URL + "/shipping_rates",
-    #    :body =>
-    #     :destination =>
-    #     :origins => [{
-    #       country: origins[:country],
-    #       state: origins[:state],
-    #       city: origins[:city],
-    #       zip: origins[:zip],
-    #       quantity: origins[:quantity],
-    #       weight: origins[:weight]
-    #       item_id: origins[:item]
-    #   }],
-    #
-    #   "order" => {
-    #     order_id: order.id
-    #   }.to_json,
-    #
-    #   :headers => {
-    #     'Content-Type' => 'application/json', 'Accept' => 'application/json'
-    #   })
+  def self.get_rates(order, destination, order_route_array)
+    response = HTTParty.post(BASE_URL + "/shipping_rates", {
+       :body =>
+        :destination => destination
+        :origins => order_route_array
+        :order => order
+        }.to_json,
+        :headers => {
+          'Content-Type' => 'application/json', 'Accept' => 'application/json'
+        } )
   end
 
   def self.response_rates

@@ -66,6 +66,7 @@ class OrdersController < ApplicationController
   end
 
   def get_rates
+
     # orders is going to be a collection of order items
 
     ## for each order there will be a collection of order items
@@ -81,7 +82,7 @@ class OrdersController < ApplicationController
     ## API will get destination = { country: "blah", city: "blah", state: "blah", zip: "blah"}
     ## API will get order = {order: order_id}
     # holds the collection of origin, destination, and weight
-    order_route_array =[]
+
 
 
     # this is going to filter out information
@@ -89,32 +90,34 @@ class OrdersController < ApplicationController
     order = Order.find(rates_params[:order][:order_id])
     destination = (rates_params[:destination])
 
+    # order.products.each do |product|
+    #     user = product.user
+    # # order.order_items.product.group_by(&:user).each do |user, order_items|
 
-    order.order_items.group_by(&:user).each do |user, order_items|
-      weights = []
-      order_items.each do |item|
-        weights << item.product.weight * item.quantity
-      end
-      total_weight = weights.inject(:+)
+      order_route_array =[]
+      order.order_items.each do |order_item|
+        total_weight = order_item.product.weight * order_item.quantity
+        user = order_item.product.user
+      # total_weight = weights.inject(:+)
     # order.order_items.each do |item|
     #   user = item.product.user
-      origins = {
+      origin = {
         country: user.country,
         state: user.state,
         city: user.city,
         zip: user.zip,
       }
 
-      order_route_array << { :origins => origins, :destination => destination, :package => total_weight}
-    end
-
+    order_route_array << { :origin => origin, :weight => total_weight, :order_item => order_item}
     ## after finding the us
-
+end
 
 
     # calls the shippingwrapper
     # get rates knows about params because we passed it in
-    @rates = ShippingWrapper.get_rates(order, destination, origins)
+
+    @rates = ShippingWrapper.get_rates(order, destination, order_route_array)
+    binding.pry
     redirect_to cart_checkout_path
   end
 
