@@ -117,7 +117,7 @@ end
     # get rates knows about params because we passed it in
 
     @rates = ShippingWrapper.get_rates(order, destination, order_route_array)
-    binding.pry
+  
     redirect_to cart_checkout_path
   end
 
